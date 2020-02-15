@@ -1,4 +1,5 @@
-### 3.1.2 Energy Bands
+### 3.2.3 Energy Bands
+
 The repetitive nature of the lattice structure in semiconductors changes how the wavefunction for a free particle acts, giving rise to a band structure throughout the medium. This band structure can be thought of as a continuous "band" of $N$ electron states that are formed from each addtional atom added to the lattice. Continually adding more of these atoms 
 
 This structure can be found by looking at how the electrons in a quantum well are confined to specfic energy states $n$, based on the following eqauation:
@@ -7,7 +8,7 @@ $$
     E_n = \hbar \omega_n = \frac{\hbar^2 n^2 \pi^2}{2mL}
 $$
 
-As $n \rightarrow \infin$, a continuous *band* is created, where the $n$ value can vary greatly, allowing many electrons to exist simultaneously in a close area.
+As $n \rightarrow \infty$, a continuous *band* is created, where the $n$ value can vary greatly, allowing many electrons to exist simultaneously in a close area.
 
 <div align="center">
     <img src="Chapter 3\Si_Energy_Band_Graph.png"/>
@@ -39,9 +40,38 @@ Below is a simplified graph of the band structure for GaAs and AlAs. The upside-
     <img src="Chapter 3/GaAs-AlAs_E-K_Graph.png" />
 </div>
 
-For an electron to move from the valence band in GaAs, we notice that there is a *direct* path for it to move in, with a relatively low band gap energy, compared to AlAs. AlAs's lowest conduction band energy is shown to the +$k$ direction from the highest point of the valence band. This causes electrons to have an *indirect* path between the conduction band and the valence band, and thus, a higher band gap energy. There needs to be other structure or helping mechanisms to move electrons from the conduction band to the valence band or vice versa.
+For an electron to move from the valence band in GaAs, we notice that there is a *direct* path for it to move in, with a relatively low band gap energy, compared to AlAs. A direct semiconductor has this vertical characteristic and in general has lower band gaps. 
 
-Other common 
+The lowest conduction band energy for AlAs is shown to the +$k$ direction from the highest point of the valence band. This causes electrons to have an *indirect* path between the conduction band and the valence band, and thus, a higher band gap energy. An indirect semiconductor does not have a direct movement from the conduction band to valence band which increases the energy band gap. There needs to be other structure or helping mechanisms to move electrons from the conduction band to the valence band or vice versa.
+
+*Side Note:*
+The mathematics for this phenomenon is the following. Given the form for a wavevector in a lattice:
+$$
+    \Psi_\mathbf{k}(x) = U(\mathbf{k}_x, x)e^{j\mathbf{k}_xx} \\
+    \space \\
+    \mathbf{k}_x = \mathbf{k} \cdot \mathbf{r}
+$$
+where $\mathbf{k}_x$ is the wavevector for the wave, describing the direction and speed of the wave in multi-dimensional space. $U(\mathbf{k}_x, x)$ is the periodicity function of the material, which modulates the function based on the wavevector and positon within the lattice.
+
+<div align="center">
+
+Common Semiconductor Types
+| Direct | Indirect |
+|---|---|
+| GaAs | Si, AlAs|  
+
+</div>
+
+### 3.1.5 Variations of Energy Bands with Alloy Composition
+As semiconductors are varied in their composition, their band structures change. An example of this is with GaAs and AlAs, where GaAs is a direct semiconductor and AlAs is a indirect semiconductor. If we transition a sample of GaAs into AlAs and measure the band gap energy as the compositon changes, we end up with the graph below.
+
+<div align="center">
+    <img src="Chapter 3\GaAs_AlAs_BandGap_Graph.png"/>
+</div>
+
+As we can tell, the GaAs sample has its conduction band minimum at $\Gamma$, which increases in its energy level as the Al concentration increases. If we continue adding Al, we eventually notice that the conduction band minimum switches to $X$, as $\Gamma$ continues at a much larger slope than $X$ does. This switch in minimum causes the change from a direct semiconductor to indirect semiconductor.
+
+This feature of band gaps was discovered back in the 
 
 ### 3.2.2 Effective Mass
 Electrons in a lattice structure are not considered completely free due to the complications the periodic potential brings to the wavefunctions. To use the regular electrodynamical equations on electrons within lattice structures, we must first find the *effective mass* of the electron, which depends on $E-k$ plot.
