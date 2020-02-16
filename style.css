@@ -3,6 +3,14 @@
     Added my own dark theme.
 */
 
+::-webkit-scrollbar {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(150,150,150,0.5);
+}
+
 html {
   font-size: 100%;
   overflow-y: scroll;
@@ -19,6 +27,8 @@ body {
   margin: auto;
   max-width: 50em;
   background: rgba(60,60,60,1);
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 a {
