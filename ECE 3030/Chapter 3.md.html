@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Chapter 3</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Chapter 3</h1>
+</header>
+<h3 id="energy-bands">3.2.3 Energy Bands</h3>
+<p>The repetitive nature of the lattice structure in semiconductors changes how the wavefunction for a free particle acts, giving rise to a band structure throughout the medium. This band structure can be thought of as a continuous “band” of <span class="math inline">\(N\)</span> electron states that are formed from each addtional atom added to the lattice. Continually adding more of these atoms</p>
+<p>This structure can be found by looking at how the electrons in a quantum well are confined to specfic energy states <span class="math inline">\(n\)</span>, based on the following eqauation:</p>
+<p><span class="math display">\[
+    E_n = \hbar \omega_n = \frac{\hbar^2 n^2 \pi^2}{2mL}
+\]</span></p>
+<p>As <span class="math inline">\(n \rightarrow \infty\)</span>, a continuous <em>band</em> is created, where the <span class="math inline">\(n\)</span> value can vary greatly, allowing many electrons to exist simultaneously in a close area.</p>
+<figure>
+<img src="Chapter%203/Si_Energy_Band_Graph.png" alt="" /><figcaption>Si Energy Band Graph</figcaption>
+</figure>
+<p>The above graph shows how these bands are formed. The <span class="math inline">\(x\)</span> axis is the atomic spacing, <span class="math inline">\(a\)</span>, and the <span class="math inline">\(y\)</span> axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to spint into <em>bands</em>, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the <em>conduction</em> band, <em>valence</em> band and their respective energy band gap, <span class="math inline">\(E_g\)</span>.</p>
+<h3 id="metals-semiconductors-and-insulators">3.3.3 Metals, Semiconductors, and Insulators</h3>
+<p>The three materials when it comes to the topics of bonds and conductivity are metals, semiconductors, and insulators.</p>
+<p>Metals are characterised by their metallic bonding and their “sea of electrons” where excess electrons not used between bonding exist. The band structure of a metal will either have the valence and conduction bands partially overlapping or the conduction band will be partially filled. This causes the electrons to easily flow in an applied electric field and is why metals commonly are great conductors.</p>
+<p>Semiconductors on the other hand, have distinctly split valence and conduction bands, with all electrons existing in the valence band at 0K. At higher temperatures, (like room temperature, 293K) electrons have enough kinetic energy to move out of the valence band and into the conduction band. The amount of electrons that are able to jump bands is based on the band gap, <span class="math inline">\(E_g\)</span> of the semiconductor. This characteristic is why semiconductors are commonly used for very precise electronics, like microprocessors. We can tune the conductivity of the material given doping and other thermal or optical operating conditions.</p>
+<p>Insulators are related to semiconductors in that they also have distinctly split valence and conduction bands, but their difference exists from the size of the band gap. For insulators, the band gap is much larger, which greatly increases the amount of energy needed for electrons to jump bands. With very few electrons in the conduction band and very few holes in the valence band, current does not flow easily through an insulator.</p>
+<p>The image below demonstrates concepts mentioned above.</p>
+<figure>
+<img src="Chapter%203/Insulators_Semiconductors_Metals_Band_Comparison.png" alt="" /><figcaption>Metal Band Comparison</figcaption>
+</figure>
+<h3 id="direct-and-indirect-semiconductors">3.1.4 Direct and Indirect Semiconductors</h3>
+<p>Continuing with our discussion on energy bands within semiconductors, we arrive at an important concept about direct and indirect semiconductors.</p>
+<p>Below is a simplified graph of the band structure for GaAs and AlAs. The upside-down parabola at the bottom of the picture is the valence band, while the three bands above are all apart of the conduction band, but just at different minimums across the entire band.</p>
+<figure>
+<img src="Chapter%203/GaAs-AlAs_E-K_Graph.png" alt="" /><figcaption>E-K Graph</figcaption>
+</figure>
+<p>For an electron to move from the valence band in GaAs, we notice that there is a <em>direct</em> path for it to move in, with a relatively low band gap energy, compared to AlAs. A direct semiconductor has this vertical characteristic and in general has lower band gaps.</p>
+<p>The lowest conduction band energy for AlAs is shown to the +<span class="math inline">\(k\)</span> direction from the highest point of the valence band. This causes electrons to have an <em>indirect</em> path between the conduction band and the valence band, and thus, a higher band gap energy. An indirect semiconductor does not have a direct movement from the conduction band to valence band which increases the energy band gap. There needs to be other structure or helping mechanisms to move electrons from the conduction band to the valence band or vice versa.</p>
+<p><em>Side Note:</em> The mathematics for this phenomenon is the following. Given the form for a wavevector in a lattice: <span class="math display">\[
+    \Psi_\mathbf{k}(x) = U(\mathbf{k}_x, x)e^{j\mathbf{k}_xx} \\
+    \space \\
+    \mathbf{k}_x = \mathbf{k} \cdot \mathbf{r}
+\]</span> where <span class="math inline">\(\mathbf{k}_x\)</span> is the wavevector for the wave, describing the direction and speed of the wave in multi-dimensional space. <span class="math inline">\(U(\mathbf{k}_x, x)\)</span> is the periodicity function of the material, which modulates the function based on the wavevector and positon within the lattice.</p>
+<p>Common Semiconductor Types</p>
+<table>
+<thead>
+<tr class="header">
+<th>Direct</th>
+<th>Indirect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GaAs</td>
+<td>Si, AlAs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="variations-of-energy-bands-with-alloy-composition">3.1.5 Variations of Energy Bands with Alloy Composition</h3>
+<p>As semiconductors are varied in their composition, their band structures change. An example of this is with GaAs and AlAs, where GaAs is a direct semiconductor and AlAs is a indirect semiconductor. If we transition a sample of GaAs into AlAs and measure the band gap energy as the compositon changes, we end up with the graph below.</p>
+<figure>
+<img src="Chapter%203/GaAs_AlAs_BandGap_Graph.png" alt="" /><figcaption>Band Gap Graph</figcaption>
+</figure>
+<p>As we can tell, the GaAs sample has its conduction band minimum at <span class="math inline">\(\Gamma\)</span>, which increases in its energy level as the Al concentration increases. If we continue adding Al, we eventually notice that the conduction band minimum switches to <span class="math inline">\(X\)</span>, as <span class="math inline">\(\Gamma\)</span> continues at a much larger slope than <span class="math inline">\(X\)</span> does. This switch in minimum causes the change from a direct semiconductor to indirect semiconductor.</p>
+<p>This feature of band gaps was discovered back in the</p>
+<h3 id="effective-mass">3.2.2 Effective Mass</h3>
+<p>Electrons in a lattice structure are not considered completely free due to the complications the periodic potential brings to the wavefunctions. To use the regular electrodynamical equations on electrons within lattice structures, we must first find the <em>effective mass</em> of the electron, which depends on <span class="math inline">\(E-k\)</span> plot.</p>
+<p><span class="math display">\[ 
+    E = \frac{1}{2}mv^2 = \frac{1}{2} \frac{p^2}{m} = \frac{\hbar^2}{2m}k^2 \\
+\]</span></p>
+<p>From this equation, we can notice that the electron energy is parabolically related to the wavenumber k, or said another way, the electron mass is inverse parabolically related to the energy. If we differentiate with respect to our independent variable, k, we arrive at the effective mass equation:</p>
+<p><span class="math display">\[
+    E = \frac{\hbar^2}{2m}k^2 \\
+    \space \\
+    \frac{d^2E}{dk^2} = \frac{\hbar^2}{m} \\
+    \space \\
+    m^* = \frac{\hbar^2}{d^2E/dk^2} 
+\]</span></p>
+<p>An E-K graph is given below, showing how the curvature (2nd derivative) changes the effective mass.</p>
+<figure>
+<img src="Chapter%203/E-K%20Graph.png" alt="" /><figcaption>Simple E-K Graph</figcaption>
+</figure>
+<p>The graph below shows the E-K graphs for GaAs and AlAs and their lowest energy bands. GaAs is a direct band gap material and AlAs is an indirect band gap material. Using the effective mass equation we found earlier, we can discern that the effective mass at the <span class="math inline">\(X\)</span> node is higher than that at the <span class="math inline">\(\Gamma\)</span> node for both materials. <span class="math inline">\(\Gamma\)</span> has a higher <span class="math inline">\(\frac{dE^2}{dk^2}\)</span> than <span class="math inline">\(X\)</span> does, which relates to a <span class="math inline">\(\Gamma\)</span> having a higher effective mass.</p>
+</body>
+</html>

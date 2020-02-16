@@ -1,3 +1,5 @@
+% Chapter 3
+
 ### 3.2.3 Energy Bands
 
 The repetitive nature of the lattice structure in semiconductors changes how the wavefunction for a free particle acts, giving rise to a band structure throughout the medium. This band structure can be thought of as a continuous "band" of $N$ electron states that are formed from each addtional atom added to the lattice. Continually adding more of these atoms 
@@ -10,9 +12,7 @@ $$
 
 As $n \rightarrow \infty$, a continuous *band* is created, where the $n$ value can vary greatly, allowing many electrons to exist simultaneously in a close area.
 
-<div align="center">
-    <img src="Chapter 3\Si_Energy_Band_Graph.png"/>
-</div>
+![Si Energy Band Graph](Chapter&#32;3/Si_Energy_Band_Graph.png)
 
 The above graph shows how these bands are formed. The $x$ axis is the atomic spacing, $a$, and the $y$ axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to spint into *bands*, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the *conduction* band, *valence* band and their respective energy band gap, $E_g$.
 
@@ -27,18 +27,14 @@ Insulators are related to semiconductors in that they also have distinctly split
 
 The image below demonstrates concepts mentioned above.
 
-<div align="center">
-    <img src="Chapter 3\Insulators_Semiconductors_Metals_Band_Comparison.png"/>
-</div>
+![Metal Band Comparison](Chapter&#32;3/Insulators_Semiconductors_Metals_Band_Comparison.png)
 
 ### 3.1.4 Direct and Indirect Semiconductors
 Continuing with our discussion on energy bands within semiconductors, we arrive at an important concept about direct and indirect semiconductors.
 
 Below is a simplified graph of the band structure for GaAs and AlAs. The upside-down parabola at the bottom of the picture is the valence band, while the three bands above are all apart of the conduction band, but just at different minimums across the entire band.
 
-<div align="center">
-    <img src="Chapter 3/GaAs-AlAs_E-K_Graph.png" />
-</div>
+![E-K Graph](Chapter&#32;3/GaAs-AlAs_E-K_Graph.png)
 
 For an electron to move from the valence band in GaAs, we notice that there is a *direct* path for it to move in, with a relatively low band gap energy, compared to AlAs. A direct semiconductor has this vertical characteristic and in general has lower band gaps. 
 
@@ -53,21 +49,18 @@ $$
 $$
 where $\mathbf{k}_x$ is the wavevector for the wave, describing the direction and speed of the wave in multi-dimensional space. $U(\mathbf{k}_x, x)$ is the periodicity function of the material, which modulates the function based on the wavevector and positon within the lattice.
 
-<div align="center">
 
 Common Semiconductor Types
+
 | Direct | Indirect |
 |---|---|
 | GaAs | Si, AlAs|  
 
-</div>
 
 ### 3.1.5 Variations of Energy Bands with Alloy Composition
 As semiconductors are varied in their composition, their band structures change. An example of this is with GaAs and AlAs, where GaAs is a direct semiconductor and AlAs is a indirect semiconductor. If we transition a sample of GaAs into AlAs and measure the band gap energy as the compositon changes, we end up with the graph below.
 
-<div align="center">
-    <img src="Chapter 3\GaAs_AlAs_BandGap_Graph.png"/>
-</div>
+![Band Gap Graph](Chapter&#32;3/GaAs_AlAs_BandGap_Graph.png)
 
 As we can tell, the GaAs sample has its conduction band minimum at $\Gamma$, which increases in its energy level as the Al concentration increases. If we continue adding Al, we eventually notice that the conduction band minimum switches to $X$, as $\Gamma$ continues at a much larger slope than $X$ does. This switch in minimum causes the change from a direct semiconductor to indirect semiconductor.
 
@@ -92,8 +85,6 @@ $$
 
 An E-K graph is given below, showing how the curvature (2nd derivative) changes the effective mass.
 
-<div align="center">
-    <img src="Chapter 3/E-K Graph.png" />
-</div>
+![Simple E-K Graph](Chapter&#32;3/E-K&#32;Graph.png)
 
 The graph below shows the E-K graphs for GaAs and AlAs and their lowest energy bands. GaAs is a direct band gap material and AlAs is an indirect band gap material. Using the effective mass equation we found earlier, we can discern that the effective mass at the $X$ node is higher than that at the $\Gamma$ node for both materials. $\Gamma$ has a higher $\frac{dE^2}{dk^2}$ than $X$ does, which relates to a $\Gamma$ having a higher effective mass.

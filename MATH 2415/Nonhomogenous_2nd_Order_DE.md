@@ -1,4 +1,4 @@
-## Nonhomogenous 2nd Order Differential Equations
+% Nonhomogenous 2nd Order Differential Equations
 An equation in the form below is what is called a **nonhomogenous** 2nd order linear differential equation:
 
 (1)
@@ -27,6 +27,7 @@ $$
 where $y_1$ and $y_2$ form the fundamental set of solutions for the corresponding homogenous equation (2), $c_n$ are arbitrary constants, and $Y(t)$ is any solution to the nonhomogenous equation (1).
 
 ----
+
 #### Summary of the above
 
 With all of the work described above, we arrive at the general way we solve nonhomogenous differential equations in the form of equation (1):
@@ -38,6 +39,7 @@ With all of the work described above, we arrive at the general way we solve nonh
 The ways of finding $y_c(t)$ are general with the way to solve homogenous equations, so that will not be discussed here. Instead, we focus on the nonhomogenous solution, step 2.
 
 ----
+
 
 ## 2. Finding the nonhomogenous solution, $Y(t)$
 
@@ -52,7 +54,10 @@ The method of undetermined coefficents is mostly a "guess-and-check" type of sol
 
 This method uses mostly brute force and domain knowledge to find a solution, so it's restricted to equations that have relatively simple makeup.
 
+
 ---
+
+
 ##### Example:
 Find a particular solution of:
 
@@ -87,7 +92,9 @@ $$
     Y(t) = -\frac{1}{2}e^{2t}
 $$
 
+
 ----
+
 
 #### Summary
 
@@ -110,13 +117,10 @@ $$
 8. Any remaining arbitrary constants can now be solved for using the initial conditions provided.
 
 
-
-<div align="center">
 Table 4:
 
-| $g(t)$ Form | $Y(T)$ Guess |
-|---|---|---|---|
+| $g(t)$ Form | $Y(t)$ Guess |
+|---|---|
 |$cos(t)$ or $sin(t)$ | $Acos(t)+Bsin(t)$ |
 | $e^t$  | $Ae^{t}$ |
 |  $\sum{t^n}$ |  $\sum{c_nt^n}$ |
-</div>
