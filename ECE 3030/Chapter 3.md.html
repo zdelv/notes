@@ -14,7 +14,20 @@
     ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="../style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -24,20 +37,20 @@
 <h1 class="title">Chapter 3</h1>
 </header>
 <h3 id="energy-bands">3.2.3 Energy Bands</h3>
-<p>The repetitive nature of the lattice structure in semiconductors changes how the wavefunction for a free particle acts, giving rise to a band structure throughout the medium. This band structure can be thought of as a continuous “band” of <span class="math inline">\(N\)</span> electron states that are formed from each addtional atom added to the lattice. Continually adding more of these atoms</p>
-<p>This structure can be found by looking at how the electrons in a quantum well are confined to specfic energy states <span class="math inline">\(n\)</span>, based on the following eqauation:</p>
-<p><span class="math display">\[
+<p>The repetitive nature of the lattice structure in semiconductors changes how the wavefunction for a free particle acts, giving rise to a band structure throughout the medium. This band structure can be thought of as a continuous “band” of <span class="math inline">N</span> electron states that are formed from each addtional atom added to the lattice. Continually adding more of these atoms</p>
+<p>This structure can be found by looking at how the electrons in a quantum well are confined to specfic energy states <span class="math inline">n</span>, based on the following eqauation:</p>
+<p><span class="math display">
     E_n = \hbar \omega_n = \frac{\hbar^2 n^2 \pi^2}{2mL}
-\]</span></p>
-<p>As <span class="math inline">\(n \rightarrow \infty\)</span>, a continuous <em>band</em> is created, where the <span class="math inline">\(n\)</span> value can vary greatly, allowing many electrons to exist simultaneously in a close area.</p>
+</span></p>
+<p>As <span class="math inline">n \rightarrow \infty</span>, a continuous <em>band</em> is created, where the <span class="math inline">n</span> value can vary greatly, allowing many electrons to exist simultaneously in a close area.</p>
 <figure>
 <img src="Chapter%203/Si_Energy_Band_Graph.png" alt="" /><figcaption>Si Energy Band Graph</figcaption>
 </figure>
-<p>The above graph shows how these bands are formed. The <span class="math inline">\(x\)</span> axis is the atomic spacing, <span class="math inline">\(a\)</span>, and the <span class="math inline">\(y\)</span> axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to spint into <em>bands</em>, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the <em>conduction</em> band, <em>valence</em> band and their respective energy band gap, <span class="math inline">\(E_g\)</span>.</p>
+<p>The above graph shows how these bands are formed. The <span class="math inline">x</span> axis is the atomic spacing, <span class="math inline">a</span>, and the <span class="math inline">y</span> axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to spint into <em>bands</em>, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the <em>conduction</em> band, <em>valence</em> band and their respective energy band gap, <span class="math inline">E_g</span>.</p>
 <h3 id="metals-semiconductors-and-insulators">3.3.3 Metals, Semiconductors, and Insulators</h3>
 <p>The three materials when it comes to the topics of bonds and conductivity are metals, semiconductors, and insulators.</p>
 <p>Metals are characterised by their metallic bonding and their “sea of electrons” where excess electrons not used between bonding exist. The band structure of a metal will either have the valence and conduction bands partially overlapping or the conduction band will be partially filled. This causes the electrons to easily flow in an applied electric field and is why metals commonly are great conductors.</p>
-<p>Semiconductors on the other hand, have distinctly split valence and conduction bands, with all electrons existing in the valence band at 0K. At higher temperatures, (like room temperature, 293K) electrons have enough kinetic energy to move out of the valence band and into the conduction band. The amount of electrons that are able to jump bands is based on the band gap, <span class="math inline">\(E_g\)</span> of the semiconductor. This characteristic is why semiconductors are commonly used for very precise electronics, like microprocessors. We can tune the conductivity of the material given doping and other thermal or optical operating conditions.</p>
+<p>Semiconductors on the other hand, have distinctly split valence and conduction bands, with all electrons existing in the valence band at 0K. At higher temperatures, (like room temperature, 293K) electrons have enough kinetic energy to move out of the valence band and into the conduction band. The amount of electrons that are able to jump bands is based on the band gap, <span class="math inline">E_g</span> of the semiconductor. This characteristic is why semiconductors are commonly used for very precise electronics, like microprocessors. We can tune the conductivity of the material given doping and other thermal or optical operating conditions.</p>
 <p>Insulators are related to semiconductors in that they also have distinctly split valence and conduction bands, but their difference exists from the size of the band gap. For insulators, the band gap is much larger, which greatly increases the amount of energy needed for electrons to jump bands. With very few electrons in the conduction band and very few holes in the valence band, current does not flow easily through an insulator.</p>
 <p>The image below demonstrates concepts mentioned above.</p>
 <figure>
@@ -50,12 +63,12 @@
 <img src="Chapter%203/GaAs-AlAs_E-K_Graph.png" alt="" /><figcaption>E-K Graph</figcaption>
 </figure>
 <p>For an electron to move from the valence band in GaAs, we notice that there is a <em>direct</em> path for it to move in, with a relatively low band gap energy, compared to AlAs. A direct semiconductor has this vertical characteristic and in general has lower band gaps.</p>
-<p>The lowest conduction band energy for AlAs is shown to the +<span class="math inline">\(k\)</span> direction from the highest point of the valence band. This causes electrons to have an <em>indirect</em> path between the conduction band and the valence band, and thus, a higher band gap energy. An indirect semiconductor does not have a direct movement from the conduction band to valence band which increases the energy band gap. There needs to be other structure or helping mechanisms to move electrons from the conduction band to the valence band or vice versa.</p>
-<p><em>Side Note:</em> The mathematics for this phenomenon is the following. Given the form for a wavevector in a lattice: <span class="math display">\[
+<p>The lowest conduction band energy for AlAs is shown to the +<span class="math inline">k</span> direction from the highest point of the valence band. This causes electrons to have an <em>indirect</em> path between the conduction band and the valence band, and thus, a higher band gap energy. An indirect semiconductor does not have a direct movement from the conduction band to valence band which increases the energy band gap. There needs to be other structure or helping mechanisms to move electrons from the conduction band to the valence band or vice versa.</p>
+<p><em>Side Note:</em> The mathematics for this phenomenon is the following. Given the form for a wavevector in a lattice: <span class="math display">
     \Psi_\mathbf{k}(x) = U(\mathbf{k}_x, x)e^{j\mathbf{k}_xx} \\
     \space \\
     \mathbf{k}_x = \mathbf{k} \cdot \mathbf{r}
-\]</span> where <span class="math inline">\(\mathbf{k}_x\)</span> is the wavevector for the wave, describing the direction and speed of the wave in multi-dimensional space. <span class="math inline">\(U(\mathbf{k}_x, x)\)</span> is the periodicity function of the material, which modulates the function based on the wavevector and positon within the lattice.</p>
+</span> where <span class="math inline">\mathbf{k}_x</span> is the wavevector for the wave, describing the direction and speed of the wave in multi-dimensional space. <span class="math inline">U(\mathbf{k}_x, x)</span> is the periodicity function of the material, which modulates the function based on the wavevector and positon within the lattice.</p>
 <p>Common Semiconductor Types</p>
 <table>
 <thead>
@@ -76,25 +89,97 @@
 <figure>
 <img src="Chapter%203/GaAs_AlAs_BandGap_Graph.png" alt="" /><figcaption>Band Gap Graph</figcaption>
 </figure>
-<p>As we can tell, the GaAs sample has its conduction band minimum at <span class="math inline">\(\Gamma\)</span>, which increases in its energy level as the Al concentration increases. If we continue adding Al, we eventually notice that the conduction band minimum switches to <span class="math inline">\(X\)</span>, as <span class="math inline">\(\Gamma\)</span> continues at a much larger slope than <span class="math inline">\(X\)</span> does. This switch in minimum causes the change from a direct semiconductor to indirect semiconductor.</p>
-<p>This feature of band gaps was discovered back in the</p>
+<p>As we can tell, the GaAs sample has its conduction band minimum at <span class="math inline">\Gamma</span>, which increases in its energy level as the Al concentration increases. If we continue adding Al, we eventually notice that the conduction band minimum switches to <span class="math inline">X</span>, as <span class="math inline">\Gamma</span> continues at a much larger slope than <span class="math inline">X</span> does. This switch in minimum causes the change from a direct semiconductor to indirect semiconductor.</p>
+<p>This feature of band gaps was discovered back in the early days of semiconductors. Scientists were testing different doping compositions and discovered that at some point the band gap energy changed very abrutly. This was due to the conduction band minimum moving from a direct location, to another indirect location.</p>
+<h2 id="charge-carries-in-semiconductors">3.2 Charge Carries in Semiconductors</h2>
+<h3 id="electrons-and-holes">3.2.1 Electrons and Holes</h3>
+<p>At 0K, all of the electrons in a semiconductor exist in the valence band, which leads to an empty conduction band. As thermal energy is added, electrons are excited from the valence band and moved into the conduction band, leaving holes in the valence band. Each pair of excited-electron and valence-hole are called <em>electron hole pairs</em> (EHPs).</p>
+<p>An excited electron in the conduction band is relatively free to move around, as the number of energy states is much larger than the number of electrons. For example, with silicon at room temperature, there are around <span class="math inline">10^{10}</span> <span class="math inline">\text{EHP}/cm^3</span> in the conduction, while the density of Si is around <span class="math inline">10^{22}</span> <span class="math inline">\text{atoms}/cm^3</span>. The multiple orders of difference allows electrons to move freely and highlights the conductivity of semiconductors, in the view of the conduction band.</p>
+<p>When looking at the current flow due to the holes, we have to change our view to look at the current density in the valence band. At 0K, when the valence band is full, the following equation describes the current density:</p>
+<ol start="4" type="1">
+<li><span class="math display">
+ J = (-q)\sum^N_i{v_i} = 0
+</span></li>
+</ol>
+<p>This equation essentially says for every electron that is moving in a specific direction, there <em>must</em> be another electron moving the in the opposite direction. This is due to every energy state in the valence band being filled, and for the electron to move, it must occupy another, already filled energy state. The electron in this already filled state must then be ejected into another state, which then finds another filled state, leading to a chain reaction, or said in other words, leads to <em>zero net current flow</em>. The <span class="math inline">E-K</span> graph below shows some of this, as in the valence band, there will always be two electrons with opposite momentum at the same given energy level.</p>
+<figure>
+<img src="Chapter%203/EHP_Momentum_EK.png" alt="" /><figcaption>EHP Momentum Pairs</figcaption>
+</figure>
+<p>If the semiconductor is brought above 0K, EHPs are created, leaving holes in the valence band. Equation 4 above transforms into the following, given that the <span class="math inline">j^{th}</span> electron is now missing:</p>
+<ol start="5" type="1">
+<li><span class="math display">
+ J = (-q)\sum^N_i{(v_i)} - (-q)v_j
+</span></li>
+</ol>
+<p>If we rememeber that the summation is the same as equation 4, (5) changes to just the following equation:</p>
+<ol start="6" type="1">
+<li><span class="math display">
+ J = -(-q)v_j = qv_j
+</span></li>
+</ol>
+<p>Rememebering that this describes the net current flow, we realize that equation 6 is actually saying that the holes have a <em>net positive current flow!</em> Now of course, this doesn’t mean that the holes are actually moving current or have a positive charge, but actually what is happening is that an electron is filling the gap and “moving” the hole in the opposite direction. It remains to say though, that the general way of describing holes is that they have a positive charge and positive mass.</p>
+<h4 id="todo-write-section-for-pg-76-78">TODO: Write section for pg 76-78</h4>
 <h3 id="effective-mass">3.2.2 Effective Mass</h3>
-<p>Electrons in a lattice structure are not considered completely free due to the complications the periodic potential brings to the wavefunctions. To use the regular electrodynamical equations on electrons within lattice structures, we must first find the <em>effective mass</em> of the electron, which depends on <span class="math inline">\(E-k\)</span> plot.</p>
-<p><span class="math display">\[ 
+<p>Electrons in a lattice structure are not considered completely free due to the complications the periodic potential brings to the wavefunctions. To use the regular electrodynamical equations on electrons within lattice structures, we must first find the <em>effective mass</em> of the electron, which depends on <span class="math inline">E-k</span> plot. We start by finding how the energy of en electron relates to its momentum, which also what spawns the shape an <span class="math inline">E-K</span> graph:</p>
+<p><span class="math display"> 
     E = \frac{1}{2}mv^2 = \frac{1}{2} \frac{p^2}{m} = \frac{\hbar^2}{2m}k^2 \\
-\]</span></p>
-<p>From this equation, we can notice that the electron energy is parabolically related to the wavenumber k, or said another way, the electron mass is inverse parabolically related to the energy. If we differentiate with respect to our independent variable, k, we arrive at the effective mass equation:</p>
-<p><span class="math display">\[
+</span></p>
+<p>From this equation, we can notice that the electron energy is parabolically related to the wavevector <span class="math inline">k</span>, or said another way, the electron mass is inverse parabolically related to the energy. If we differentiate with respect to our independent variable, <span class="math inline">k</span>, we arrive at the effective mass equation:</p>
+<p><span class="math display">
     E = \frac{\hbar^2}{2m}k^2 \\
     \space \\
     \frac{d^2E}{dk^2} = \frac{\hbar^2}{m} \\
     \space \\
     m^* = \frac{\hbar^2}{d^2E/dk^2} 
-\]</span></p>
-<p>An E-K graph is given below, showing how the curvature (2nd derivative) changes the effective mass.</p>
+</span></p>
+<p>The equation shows us that the 2nd derivative, or the curvature of the band edge determies the effective mass. The graph below shows the E-K graphs for GaAs and AlAs and their lowest energy bands.</p>
 <figure>
-<img src="Chapter%203/E-K%20Graph.png" alt="" /><figcaption>Simple E-K Graph</figcaption>
+<img src="Chapter%203/GaAs-AlAs_E-K_Graph.png" alt="" /><figcaption>Complicated E-K Graph</figcaption>
 </figure>
-<p>The graph below shows the E-K graphs for GaAs and AlAs and their lowest energy bands. GaAs is a direct band gap material and AlAs is an indirect band gap material. Using the effective mass equation we found earlier, we can discern that the effective mass at the <span class="math inline">\(X\)</span> node is higher than that at the <span class="math inline">\(\Gamma\)</span> node for both materials. <span class="math inline">\(\Gamma\)</span> has a higher <span class="math inline">\(\frac{dE^2}{dk^2}\)</span> than <span class="math inline">\(X\)</span> does, which relates to a <span class="math inline">\(\Gamma\)</span> having a higher effective mass.</p>
+<p>GaAs is a direct band gap material and AlAs is an indirect band gap material. Using the effective mass equation we found earlier, we can discern that the effective mass at the <span class="math inline">X</span> node is higher than that at the <span class="math inline">\Gamma</span> node for both materials. <span class="math inline">\Gamma</span> has a higher <span class="math inline">\frac{d^2E}{dk^2}</span> than <span class="math inline">X</span> does, which relates to a <span class="math inline">\Gamma</span> having a lower effective mass.</p>
+<p>Looking further at this graph, we notice that if we calculate the effective mass for the valence band maximum (for electrons), that it is actually a <em>negative value!</em> Negative mass makes no sense, but if we remember that this is <em>effective</em> mass, it makes much more sense. Just viewing valence band electrons, this means that negative mass and negative charge electrons move in the same directon as positive mass and positive charge holes.</p>
+<h6 id="why-calculate-effective-mass">Why calculate effective mass?</h6>
+<p>Effective mass is a somewhat abstract concept and doesn’t seem all that useful especially given the fact that it causes some complications, like negative mass. The reason why we find this value comes from Newton’s Second Law:</p>
+<p><span class="math display">
+    \frac{dp}{dt} = \frac{d(mv)}{dt} = F
+</span></p>
+<p>The above equation for an electron in a periodic crystal structure combines the internal and external forces; <span class="math inline">F_{int} + F_{ext}</span>, where <span class="math inline">F_{int}</span> is the forces due to the period crystal structure and <span class="math inline">F_{ext}</span> is due to an external applied force. This problem is very difficult to solve for most semiconductors due to their completely different compositions from each other. It would be a waste of time to redo most of the same work to achieve different conclusions for each material. To work around this, we find the the band structure, <span class="math inline">E-k</span>, for each material and relate what the <em>effective mass</em> of the particle would be for a given momentum. This simplification makes it easier to make general conclusions about semiconductors but also brings with it some issues where things like <span class="math inline">\hbar k</span> being a quasi-momentum or that effective mass needs to be treated differently in equations (summation, average, etc). Regardless of the issues, it comes to a net reduction of burden for calculation, so scientists stuck with it.</p>
+<h3 id="intrinsic-materials">3.2.3 Intrinsic Materials</h3>
+<p>An intrinsic material is a material with no defects or external additions (eg. not doped or contaminated). At 0K, an intrinsic material has zero electrons in the conduction band (zero EHPs) and a completely filled valence band. At higher temperatures, EHPs are generated and become the only charge carries in the material. The previous section 3.2.1 assumed an intrinsic material.</p>
+<p>EHPs only are generated in pairs, therefore there must be an equal number of electrons in the conduction band and holes in valence band. This relationship is shown succinctly below:</p>
+<p><span class="math display">
+    n = p = n_i
+</span></p>
+<p>where <span class="math inline">n</span> is the number of <em>negative</em> electrons, <span class="math inline">p</span> is the number of <em>positive</em> holes, and <span class="math inline">n_i</span> is the <em>intrinsic</em> carrier concentration.</p>
+<p>As the temperature varies, the EHP concentration must also vary. If we keep the carrier concentration the same, we realize that for every EHP <em>generated</em> we must have another EHP go through a <em>recombination</em>. These two rates, <span class="math inline">g_i</span> and <span class="math inline">r_i</span>, for generation and recombination, respectively, can be related through the following equation:</p>
+<p><span class="math display"> 
+    g_t = r_t
+</span></p>
+<p>Given a specific carrier concentration, the rate at which EHPs are created must equal the rate at which EHPs are destroyed. This relation makes sense; if we created more EHPs then we destroyed, then we would no longer have <span class="math inline">n = p</span> and would no longer have an intrinsic material. We also realize that for an intrinsic material, this must hold true for all temperature (although the rates can vary) and we reach the following conclusion:</p>
+<p><span class="math display">
+    r_t = \alpha_rn_0p_0 = \alpha_rn_i^2 = g_t
+</span></p>
+<p>where <span class="math inline">\alpha_r</span> is a recombination factor that is determined by the mechanism that used to recombine the EHP. This relation tells us that the number of holes and electrons is directly proportional to the recombination and generation rates.</p>
+<h3 id="extrinsic-materials">3.2.4 Extrinsic Materials</h3>
+<p>Through specific processes, we can change the carrier concentrations in ways other than just temperature dependence. One of these ways is called <em>doping</em>, where other elements are added to the lattice structure. These new elements have different numbers of electrons then the main material of the lattice, which results in either extra electrons (n-type) or extra holes (p-type). When materials are doped such that <span class="math inline">n_0</span> or <span class="math inline">p_0</span> are different from <span class="math inline">n_i</span>, the intrinsic carrier concentration, we call the material <em>extrinsic</em>.</p>
+<h6 id="n-type-dopants">n-type Dopants</h6>
+<p>For n-type dopants, like those from column V (P, As, Sb), the extra atoms introduce a <em>donor</em> energy level, which resides just below the conduction band. This donor level is completely filled at 0K, but due to its proximity to the conduction band, electrons do not need much energy to move into the conduction band. Thus, at low temperatures, the donor level will be completely empty, and all of its electrons will exist in the conduction band. This causes <span class="math inline">n_0</span> to larger than <span class="math inline">p_0</span> as EHPs are still created with the temperature variance and the extra donor level does not contribute to the number of holes in the valence band. This donor band is shown in the image below.</p>
+<figure>
+<img src="Chapter%203/n-type_material.png" alt="" /><figcaption>n-type Material</figcaption>
+</figure>
+<p>At 0K, all of the electrons in the donor level reside within the its energy level, but at low temperatures, like 50K, we see that electrons move into the conduction band. This means that <span class="math inline">n_0 &gt; p_0, n_i</span>.</p>
+<h6 id="p-type-dopants">p-type Dopants</h6>
+<p>For p-type dopants, like those from column III (B, Al, Ga, In), the extra atoms introduce an <em>acceptor</em> energy level, existing just above the valence band. This energy level is normally empty, as the column III elements are misisng an electron when compared to the column IV main element. At 0K this band remains completely empty, just above the filled valence band. At low temperatures, the small energy difference between it and the valence band allows for electrons in the valence band to move into the acceptor level. This creates an extra amount of holes in the valence band. The image below shows the effect a p-type dopant has.</p>
+<figure>
+<img src="Chapter%203/p-type_material.png" alt="" /><figcaption>p-type Material</figcaption>
+</figure>
+<p>At 0K, no electrons exist in the acceptor level, but at 50K, we notice many electrons leave the valence band to join the acceptor level. This causes the concentration to change, where <span class="math inline">p_0 &gt; n_0, n_i</span>.</p>
+<h6 id="doping-examples">Doping Examples</h6>
+<p>Doping Si with a column III element would be a p-type dopant, while a column IV element would be a n-type dopant. A combined III-V base semiconductor, like GaAs, gets donors from column VI, so S, Sc, and Te would be examples of substitutes for As. An acceptor for GaAs would reside in column II, so Be, Zn, and Cd would substitute for Ga.</p>
+<p>A more odd example would be that of doping a III-V material with a column IV material, like Si or Ge. These column IV materials can act as donors or acceptors based on which atom location they reside in. For example, in GaAs, when Si resides in a Ga location, it acts as a donor, while on an As location, it acts an acceptor. These types of dopants are called <em>amphoteric</em>.</p>
+<p>Doping a material will cause changes in the electronic properties, which will be discussed later, but on a simple level, the following example demononstrates how powerful the process is. For Si, the intrinsic carrier concentration, <span class="math inline">n_i</span> is around <span class="math inline">10^{10} \space\text{cm}^{-3}</span> at room temperature. If Si is doped with As at a density of <span class="math inline">10^{15} \space\text{atoms/cm}^3</span>, the resistivity drops from <span class="math inline">2\times10^{5} \space\Omega\text{-cm}</span> to <span class="math inline">5 \space\Omega\text{-cm}</span>.</p>
+<p>When a semiconductor is doped, either electrons or holes will be much greater than the other. In either p-type or n-type, we describe the greater of the two as the <em>majority carrier</em> and the lesser the <em>minority carrier</em>. For example, in n-type the electrons are the majority carrier and the holes are the minority carrier. In p-type, the opposite is true.</p>
+<h6 id="citation">Citation</h6>
+<p>All images are sourced from <em>Solid State Electronic Devices</em>, 7th Editon, by Ben Streetman and Sanjay Banerjee</p>
 </body>
 </html>
