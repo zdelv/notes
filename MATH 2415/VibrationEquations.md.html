@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Lecture 2020-02-17</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Lecture 2020-02-17</h1>
+</header>
+<h3 id="mechanical-and-electrical-vibrations">3.7 Mechanical and Electrical Vibrations</h3>
+<h4 id="vibration-equation">Vibration Equation</h4>
+<p>We seek to understand the solutions for the following equation, which describes the movement of a vibrating mass on a spring, or other similar actions: <span class="math display">
+    mu&#39;&#39;+\gamma u&#39;+ku=F(t)
+</span></p>
+<h5 id="undampted-free-vibrations">Undampted Free Vibrations</h5>
+<p><span class="math inline">F(t)=0</span> (no external force applied) and the mass is undamped, meaning <span class="math inline">\gamma=0</span></p>
+<p>The equation above then reduces to the following:</p>
+<p><span class="math display">
+    mu&#39;&#39;+ku=0
+</span></p>
+<p>and has a characteristic equation of the following form:</p>
+<p><span class="math display">
+    mr^2 + k = 0
+</span></p>
+<p>with roots <span class="math inline">r=\plusmn \sqrt{k/m}</span>. Thus the general solution is the following:</p>
+<p><span class="math display">
+    u = A\cos(\omega_0 t) + B\sin(\omega_0 t)
+</span></p>
+<p>where <span class="math inline">\omega_0 = \sqrt{k/m}</span>. If the initial conditions for the mass are given, the values for <span class="math inline">A</span> and <span class="math inline">B</span> can be found.</p>
+<p>We also wish to analyze this solution further by comparing it to the following equation:</p>
+<p><span class="math display">
+    u = R\cos(\delta)\cos(\omega_0 t) + R\sin(\delta)\sin(\omega_0 t)
+</span></p>
+<p>This equation was created with the following transformations:</p>
+<p><span class="math display">
+    \begin{aligned}
+    A &amp;= R\cos(\delta) \\
+    B &amp;= R\sin(\delta) \\
+    \space \\
+    R &amp;= \sqrt{A^2 + B^2} \\
+    \tan(\delta) &amp;= \frac{B}{A}
+    \end{aligned}
+</span></p>
+<p>From the above equations, we find that the <strong>period</strong> of the motion is: <span class="math display">
+    T=\frac{2\pi}{\omega_0}
+</span></p>
+<p><span class="math inline">\omega_0</span> is the circular frequency, <span class="math inline">R</span> is the maximum displacement and the amplitude of the wave, and <span class="math inline">\delta</span> is the phase, or the offset of the wave from its natural position (eg offset from <span class="math inline">0\degree</span>)</p>
+<h5 id="damped-free-vibrations">Damped Free Vibrations</h5>
+<p>Vibration equation without any applied force, <span class="math inline">F(t)=0</span> <span class="math display">
+    mu&#39;&#39;+\gamma u&#39;+ku = 0
+</span></p>
+<p><span class="math display">
+    r_1,r_2=\frac{-\gamma \plusmn \sqrt{\gamma^2-4km}}{2m} \space (\text{Quadratic})
+</span></p>
+<p>The solution for <span class="math inline">u</span> has one of the following forms given the above determinant: <span class="math display">
+    \begin{aligned}
+    \gamma^2-4km&gt;0,&amp;\space u=Ae^{r_1t}+Be^{r_2t}\\
+    \gamma^2-4km=0,&amp;\space u=(A+B)e^{-\gamma t/2m}\\
+    \gamma^2-4km&lt;0,&amp;\space u=e^{-\gamma t/2m}(A\cos(\mu t)+B\sin(\mu t)) \\
+                    &amp;\mu=\frac{1}{2m}(4km-\gamma^2)^{1/2} &gt; 0
+    \end{aligned}
+</span></p>
+<h6 id="example-1">Example 1</h6>
+<p>Find the general solution of the following problem:</p>
+<p><span class="math display">
+    u&#39;&#39; + 2u&#39; + 5u = 0, \space u(0)=1, \space u&#39;(0)=1
+</span></p>
+<p>We first find the roots:</p>
+<p><span class="math display">
+    r^2 + 2r + 5 = 0
+</span></p>
+<p><span class="math display">
+    \begin{aligned}
+    r_1,r_2=\frac{-2 \plusmn \sqrt{2^2-4(1\cdot5)}}{2\cdot1}
+    \end{aligned}
+</span></p>
+<p><span class="math display">
+    \gamma = -1 \plusmn 2i
+</span></p>
+<p>Plugging these into our general form for the 2nd order differential equation with non-real roots, we get the following</p>
+<hr />
+<p>NEVER FINISHED EXAMPLE</p>
+<hr />
+<h3 id="force-periodic-vibrations">3.8 Force Periodic Vibrations</h3>
+<h6 id="example-3">Example 3</h6>
+<p><span class="math display">
+    u&#39;&#39;+\omega^2u=F_0\cos(\omega t)
+</span></p>
+<p>We first find the complementary solution, which is given by the following equations: <span class="math display">
+    \begin{matrix}
+    r^2+\omega^2r = 0 \\
+    r_1,r_2 =\frac{-\omega^2 \plusmn \sqrt{(\omega^2)^2-4(1\cdot0})}{2\cdot1}
+    \end{matrix}
+</span> <span class="math display">
+    u_c = C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)
+</span></p>
+<p><strong>Case 1</strong>: When <span class="math inline">\omega \not= \omega_0</span></p>
+<p>Particular Solution: <span class="math display">
+    \begin{aligned}
+    u_p&amp;=A\cos(\omega t) + B\sin(\omega t) \\
+    u&#39;&#39;_p&amp;=-A\omega^2\cos(\omega t)-B\omega^2\sin(\omega t)
+    \end{aligned}
+</span></p>
+<p>Plug Particular + Derivatives into the Complementary <span class="math display">
+    \begin{aligned}
+    F_0\cos(\omega t)&amp;=u&#39;&#39;+\omega^2u \\
+    F_0\cos(\omega t)&amp;=(-A\omega^2\cos(\omega t)-B\omega^2\sin(\omega t))+\omega^2(A\cos(\omega t) + B\sin(\omega t))\\
+    F_0\cos(\omega t)&amp;=A(\omega_0^2-\omega^2)\cos(\omega t) + B(\omega_0^2-\omega^2)\sin(\omega t)
+    \end{aligned}
+</span></p>
+<p>Solve for <span class="math inline">A</span> and <span class="math inline">B</span> by comparing the coefficents on both sides of the equation:</p>
+<p><span class="math display">
+    \begin{aligned}
+    \cos(\omega t):&amp;\space A(\omega_0^2-\omega^2)=F_0 \\
+    \sin(\omega t):&amp;\space B(\omega_0^2 - \omega^2)=0 \\
+    \end{aligned}
+</span></p>
+<p><span class="math display">
+    \begin{aligned}
+    A &amp;= \frac{F_0}{\omega_0^2-\omega^2} \\
+    B &amp;= 0 
+    \end{aligned}
+</span></p>
+<p>With <span class="math inline">A</span> and <span class="math inline">B</span> solved for, we now have the particular solution:</p>
+<p><span class="math display">
+    u_p = \frac{F_0}{\omega_0^2-\omega^2}\cos(\omega t)
+</span></p>
+<p>Add the particular solution to the complementary solution to get the general solution</p>
+<p><span class="math display">
+    u = C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t) + \frac{F_0}{\omega_0^2-\omega^2}\cos(\omega t)
+</span></p>
+<p>If we assume <span class="math inline">u(0)=0</span>, <span class="math inline">u&#39;(0)=0</span>, then we can solve for <span class="math inline">C_n</span>:</p>
+<p><span class="math display">
+    \begin{aligned}
+    C_1 &amp;= -\frac{F_0}{\omega_0^2-\omega^2} \\
+    C_2 &amp;= 0 \\
+    \end{aligned}
+</span></p>
+<p><span class="math display">
+    \begin{aligned}
+    u &amp;= \frac{F_0}{\omega_0^2-\omega^2}(\cos(\omega t) - \cos(\omega_0 t)) \\
+      &amp;= \frac{2F_0}{\omega_0^2-\omega^2}\cdot\sin(\frac{\omega_0+\omega}{2}t)\cdot\sin(\frac{\omega_0-\omega}{2}t)
+    \end{aligned}
+</span></p>
+</body>
+</html>

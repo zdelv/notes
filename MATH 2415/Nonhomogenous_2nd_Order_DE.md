@@ -1,4 +1,5 @@
 % Nonhomogenous 2nd Order Differential Equations
+
 An equation in the form below is what is called a **nonhomogenous** 2nd order linear differential equation:
 
 (1)
@@ -82,8 +83,11 @@ $$
 The obtained equation after substituing the given differentials in is the following:
 
 $$
-    Y''-3Y'-4Y=(4A-6A-4A)e^{2t}=3e^{2t} \\
-    -6Ae^{2t} = 3e^{2t}
+    \begin{aligned}
+    Y''-3Y'-4Y &= 3e^{2t} \\
+    (4A-6A-4A)e^{2t}&=3e^{2t} \\
+    -6Ae^{2t} &= 3e^{2t}
+    \end{aligned}
 $$
 
 Given the above equation, we can notice that the only value for A that satisfies it is when $A = -\frac{1}{2}$, therefore the following solution is achieved:

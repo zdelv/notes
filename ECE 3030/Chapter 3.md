@@ -14,7 +14,7 @@ As $n \rightarrow \infty$, a continuous *band* is created, where the $n$ value c
 
 ![Si Energy Band Graph](Chapter&#32;3/Si_Energy_Band_Graph.png)
 
-The above graph shows how these bands are formed. The $x$ axis is the atomic spacing, $a$, and the $y$ axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to spint into *bands*, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the *conduction* band, *valence* band and their respective energy band gap, $E_g$.
+The above graph shows how these bands are formed. The $x$ axis is the atomic spacing, $a$, and the $y$ axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to form into *bands*, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the *conduction* band, *valence* band and their respective energy band gap, $E_g$.
 
 ### 3.3.3 Metals, Semiconductors, and Insulators
 The three materials when it comes to the topics of bonds and conductivity are metals, semiconductors, and insulators.
@@ -71,7 +71,7 @@ This feature of band gaps was discovered back in the early days of semiconductor
 ### 3.2.1 Electrons and Holes
 At 0K, all of the electrons in a semiconductor exist in the valence band, which leads to an empty conduction band. As thermal energy is added, electrons are excited from the valence band and moved into the conduction band, leaving holes in the valence band. Each pair of excited-electron and valence-hole are called *electron hole pairs* (EHPs).
 
-An excited electron in the conduction band is relatively free to move around, as the number of energy states is much larger than the number of electrons. For example, with silicon at room temperature, there are around $10^{10}$ $\text{EHP}/cm^3$ in the conduction, while the density of Si is around $10^{22}$ $\text{atoms}/cm^3$. The multiple orders of difference allows electrons to move freely and highlights the conductivity of semiconductors, in the view of the conduction band.
+An excited electron in the conduction band is relatively free to move around, as the number of energy states is much larger than the number of electrons. For example, with silicon at room temperature, there are around $10^{10}$ $\text{electrons}/cm^3$ in the conduction band, while the density of Si is around $10^{22}$ $\text{atoms}/cm^3$. The multiple orders of difference allows electrons to move freely and highlights the conductivity of semiconductors, in the view of the conduction band.
 
 When looking at the current flow due to the holes, we have to change our view to look at the current density in the valence band. At 0K, when the valence band is full, the following equation describes the current density:
 
@@ -108,17 +108,17 @@ Rememebering that this describes the net current flow, we realize that equation 
 Electrons in a lattice structure are not considered completely free due to the complications the periodic potential brings to the wavefunctions. To use the regular electrodynamical equations on electrons within lattice structures, we must first find the *effective mass* of the electron, which depends on $E-k$ plot. We start by finding how the energy of en electron relates to its momentum, which also what spawns the shape an $E-K$ graph:
 
 $$ 
-    E = \frac{1}{2}mv^2 = \frac{1}{2} \frac{p^2}{m} = \frac{\hbar^2}{2m}k^2 \\
+    E = \frac{1}{2}mv^2 = \frac{1}{2} \frac{p^2}{m} = \frac{\hbar^2}{2m}k^2
 $$
 
 From this equation, we can notice that the electron energy is parabolically related to the wavevector $k$, or said another way, the electron mass is inverse parabolically related to the energy. If we differentiate with respect to our independent variable, $k$, we arrive at the effective mass equation:
 
 $$
-    E = \frac{\hbar^2}{2m}k^2 \\
-    \space \\
-    \frac{d^2E}{dk^2} = \frac{\hbar^2}{m} \\
-    \space \\
-    m^* = \frac{\hbar^2}{d^2E/dk^2} 
+    \begin{aligned}
+    E &= \frac{\hbar^2}{2m}k^2 \\
+    \frac{d^2E}{dk^2} &= \frac{\hbar^2}{m} \\
+    m^* &= \frac{\hbar^2}{d^2E/dk^2} 
+    \end{aligned}
 $$
 
 The equation shows us that the 2nd derivative, or the curvature of the band edge determies the effective mass. The graph below shows the E-K graphs for GaAs and AlAs and their lowest energy bands.
@@ -193,6 +193,39 @@ A more odd example would be that of doping a III-V material with a column IV mat
 Doping a material will cause changes in the electronic properties, which will be discussed later, but on a simple level, the following example demononstrates how powerful the process is. For Si, the intrinsic carrier concentration, $n_i$ is around $10^{10} \space\text{cm}^{-3}$ at room temperature. If Si is doped with As at a density of $10^{15} \space\text{atoms/cm}^3$, the resistivity drops from $2\times10^{5} \space\Omega\text{-cm}$ to $5 \space\Omega\text{-cm}$.
 
 When a semiconductor is doped, either electrons or holes will be much greater than the other. In either p-type or n-type, we describe the greater of the two as the *majority carrier* and the lesser the *minority carrier*. For example, in n-type the electrons are the majority carrier and the holes are the minority carrier. In p-type, the opposite is true.
+
+### 3.2.5 Electrons and Holes in Quantum Wells
+
+**TODO: Write this section**
+
+## 3.3 Carrier Concentrations
+
+Given what we now know about doping, carriers, and EHPs, we wish to find a way to mathmatically describe the carrier concentration. This is a quantum mechanical problem, and thus we must calculate over the entire region of allowed states for electrons (and holes). The following sections discuss this further.
+
+### 3.3.1 The Fermi Level
+
+It is a known fact that electrons obey the Fermi-Dirac distribution when inside of a solid structure, like a lattice. Combining the quantum-mechanical nature of electrons (Pauli exlusion, wave nature, etc), we arrive at the following equation for the probability of an energy state being filled:
+
+(3.3.1-1)
+$$
+    f(E) = \frac{1}{1 + e^{(E-E_f)/kT}}
+$$
+
+where $k$ is Boltzmann's constant, $E_f$ is the *Fermi level* of the material, $T$ is the temperature. This function, called the *Fermi-Dirac Distribution* will give the probability that the energy state, $E$, is populated with an electron, given the temperature is $T$. The Fermi level is the energy level at which no electrons can go above when the material is at 0K. This value is extremely important for describing semiconductor mechanics. 
+
+An important observation to make about the Fermi level comes from when we set the energy in equation 3.3.1-1 to $E_f$, we find the following:
+
+$$
+    f(E_f)= [ 1 + e^{(E_f - E_f)/kT} ]^{-1} = \frac{1}{1+1} = \frac{1}{2}
+$$
+
+This specifically means that for any energy state equal to the Fermi level, the probability of finding an electron in that state, is always 50%, or .5.
+
+A few more observations can be found by varying the value of $T$ and noticing the change in the shape of the Fermi-Dirac distribution. The below image highlights this experiment.
+
+![Fermi-Dirac Distribution](Chapter&#32;3/Fermi-Dirac-Distribution.png)
+
+At 0K, the probability graph is a rectangular surface, where it makes a sharp decrease at the Fermi level. This graph perfectly lines up with the definition of the Fermi level, as at 0K, we will never find an electron above $E_f$. Increasing the temperature shows that the slope around $E_f$ will decrease, but stay centered at $E_f$. This also highlights the important aspect that as we add more thermal energy to the system, we should expect that some electrons will occupy higher level energy states, above the Fermi level.
 
 ###### Citation
 

@@ -122,6 +122,13 @@ blockquote {
   border-left: 0.5em #EEE solid;
 }
 
+#stoppingpoint {
+  font-size: 8pt;
+  margin: auto;
+  align-content: center;
+  justify-content: center;
+}
+
 hr {
   display: block;
   height: 2px;

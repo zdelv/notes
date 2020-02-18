@@ -46,7 +46,7 @@
 <figure>
 <img src="Chapter%203/Si_Energy_Band_Graph.png" alt="" /><figcaption>Si Energy Band Graph</figcaption>
 </figure>
-<p>The above graph shows how these bands are formed. The <span class="math inline">x</span> axis is the atomic spacing, <span class="math inline">a</span>, and the <span class="math inline">y</span> axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to spint into <em>bands</em>, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the <em>conduction</em> band, <em>valence</em> band and their respective energy band gap, <span class="math inline">E_g</span>.</p>
+<p>The above graph shows how these bands are formed. The <span class="math inline">x</span> axis is the atomic spacing, <span class="math inline">a</span>, and the <span class="math inline">y</span> axis is the energy an electron could have given that atomic spacing. As the spacing increases, we approach discrete energy levels, which are represented by the single lines coming from the right axis. As the spacing is decreased, the effect described above begins to occur, and the possible energy levels increase quickly. This causes the discrete energy level to form into <em>bands</em>, where an electron could have any energy level within that band. At the actual spacing, which is marked in the diagram, we can see the appearence of the <em>conduction</em> band, <em>valence</em> band and their respective energy band gap, <span class="math inline">E_g</span>.</p>
 <h3 id="metals-semiconductors-and-insulators">3.3.3 Metals, Semiconductors, and Insulators</h3>
 <p>The three materials when it comes to the topics of bonds and conductivity are metals, semiconductors, and insulators.</p>
 <p>Metals are characterised by their metallic bonding and their “sea of electrons” where excess electrons not used between bonding exist. The band structure of a metal will either have the valence and conduction bands partially overlapping or the conduction band will be partially filled. This causes the electrons to easily flow in an applied electric field and is why metals commonly are great conductors.</p>
@@ -179,6 +179,26 @@
 <p>A more odd example would be that of doping a III-V material with a column IV material, like Si or Ge. These column IV materials can act as donors or acceptors based on which atom location they reside in. For example, in GaAs, when Si resides in a Ga location, it acts as a donor, while on an As location, it acts an acceptor. These types of dopants are called <em>amphoteric</em>.</p>
 <p>Doping a material will cause changes in the electronic properties, which will be discussed later, but on a simple level, the following example demononstrates how powerful the process is. For Si, the intrinsic carrier concentration, <span class="math inline">n_i</span> is around <span class="math inline">10^{10} \space\text{cm}^{-3}</span> at room temperature. If Si is doped with As at a density of <span class="math inline">10^{15} \space\text{atoms/cm}^3</span>, the resistivity drops from <span class="math inline">2\times10^{5} \space\Omega\text{-cm}</span> to <span class="math inline">5 \space\Omega\text{-cm}</span>.</p>
 <p>When a semiconductor is doped, either electrons or holes will be much greater than the other. In either p-type or n-type, we describe the greater of the two as the <em>majority carrier</em> and the lesser the <em>minority carrier</em>. For example, in n-type the electrons are the majority carrier and the holes are the minority carrier. In p-type, the opposite is true.</p>
+<h3 id="electrons-and-holes-in-quantum-wells">3.2.5 Electrons and Holes in Quantum Wells</h3>
+<p><strong>TODO: Write this section</strong></p>
+<h2 id="carrier-concentrations">3.3 Carrier Concentrations</h2>
+<p>Given what we now know about doping, carriers, and EHPs, we wish to find a way to mathmatically describe the carrier concentration. This is a quantum mechanical problem, and thus we must calculate over the entire region of allowed states for electrons (and holes). The following sections discuss this further.</p>
+<h3 id="the-fermi-level">3.3.1 The Fermi Level</h3>
+<p>It is a known fact that electrons obey the Fermi-Dirac distribution when inside of a solid structure, like a lattice. Combining the quantum-mechanical nature of electrons (Pauli exlusion, wave nature, etc), we arrive at the following equation for the probability of an energy state being filled:</p>
+<p>(3.3.1-1) <span class="math display">
+    f(E) = \frac{1}{1 + e^{(E-E_f)/kT}}
+</span></p>
+<p>where <span class="math inline">k</span> is Boltzmann’s constant, <span class="math inline">E_f</span> is the <em>Fermi level</em> of the material, <span class="math inline">T</span> is the temperature. This function, called the <em>Fermi-Dirac Distribution</em> will give the probability that the energy state, <span class="math inline">E</span>, is populated with an electron, given the temperature is <span class="math inline">T</span>. The Fermi level is the energy level at which no electrons can go above when the material is at 0K. This value is extremely important for describing semiconductor mechanics.</p>
+<p>An important observation to make about the Fermi level comes from when we set the energy in equation 3.3.1-1 to <span class="math inline">E_f</span>, we find the following:</p>
+<p><span class="math display">
+    f(E_f)= [ 1 + e^{(E_f - E_f)/kT} ]^{-1} = \frac{1}{1+1} = \frac{1}{2}
+</span></p>
+<p>This specifically means that for any energy state equal to the Fermi level, the probability of finding an electron in that state, is always 50%, or .5.</p>
+<p>A few more observations can be found by varying the value of <span class="math inline">T</span> and noticing the change in the shape of the Fermi-Dirac distribution. The below image highlights this experiment.</p>
+<figure>
+<img src="Chapter%203/Fermi-Dirac-Distribution.png" alt="" /><figcaption>Fermi-Dirac Distribution</figcaption>
+</figure>
+<p>At 0K, the probability graph is a rectangular surface, where it makes a sharp decrease at the Fermi level. This graph perfectly lines up with the definition of the Fermi level, as at 0K, we will never find an electron above <span class="math inline">E_f</span>. Increasing the temperature shows that the slope around <span class="math inline">E_f</span> will decrease, but stay centered at <span class="math inline">E_f</span>. This also highlights the important aspect that as we add more thermal energy to the system, we should expect that some electrons will occupy higher level energy states, above the Fermi level.</p>
 <h6 id="citation">Citation</h6>
 <p>All images are sourced from <em>Solid State Electronic Devices</em>, 7th Editon, by Ben Streetman and Sanjay Banerjee</p>
 </body>
