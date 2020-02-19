@@ -265,6 +265,15 @@ table td {
   vertical-align: top;
 }
 
+
+#theorem table {
+  width: 100%;
+}
+
+#theorem table th {
+  background: rgba(60,60,100,1);
+}
+
 .author {
   font-size: 1.2em;
   text-align: center;
