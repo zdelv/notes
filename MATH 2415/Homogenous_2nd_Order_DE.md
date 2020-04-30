@@ -130,26 +130,25 @@ $$
     b^2 - 4ac
 $$
 
-If $r_1$ and $r_2$ are not equal and are real, or the determinant is positive:
+Thus, there are multiple solutions given a few different cases of these previous variables:
 
-$$
-    y = c_1 e^{r_1 t} + c_2 e^{r_2 t}
-$$
+!!! case: If $r_1$ and $r_2$ are not equal and are real, or the determinant is positive:
+    $$
+        y = c_1 e^{r_1 t} + c_2 e^{r_2 t}
+    $$
 
-If $r_1$ and $r_2$ are complex conjugates, or the determinant is negative:
+!!! case: If $r_1$ and $r_2$ are complex conjugates, or the determinant is negative:
+    $$
+        \begin{aligned}
+        &e^{\lambda + i \mu} = e^{\lambda t}(\cos(\mu t) + i\sin(\mu t)) \\
+        \space \\
+        &y = c_1 e^{\lambda t}\cos(\mu t) + c_2 e^{\lambda t}\sin(\mu t)
+        \end{aligned}
+    $$
 
-$$
-    \begin{aligned}
-    &e^{\lambda + i \mu} = e^{\lambda t}(\cos(\mu t) + i\sin(\mu t)) \\
-    \space \\
-    &y = c_1 e^{\lambda t}\cos(\mu t) + c_2 e^{\lambda t}\sin(\mu t)
-    \end{aligned}
-$$
-
-If $r_1$ and $r_2$ are equal, or the determinant is zero:
-
-$$
-    y = c_1 e^{r_1 t} + c_2 t e^{r_1 t}
-$$
+!!! case: If $r_1$ and $r_2$ are equal, or the determinant is zero:
+    $$
+        y = c_1 e^{r_1 t} + c_2 t e^{r_1 t}
+    $$
 
 <!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

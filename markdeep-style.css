@@ -252,4 +252,12 @@ table td {
     vertical-align: top;
 }
 
+::-webkit-scrollbar {
+    background: transparent; 
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(150,150,150,0.5);
+  }
+
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300');

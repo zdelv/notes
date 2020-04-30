@@ -29,7 +29,7 @@ $$
 
 We also know given our knowledge of linear systems of equations, that if $Y_1$ and $Y_2$ are solutions to the nonhomogenous linear differential equation (1), then their difference $Y_1 - Y_2$ is a solution to the corresponding linear system of equation (2). In addition, we also know that $Y_1 - Y_2 = c_1y_1(t)+c_2y_2(t)$, given that $y_1$ and $y_2$ form the fundamental set of solutions for equation (2).
 
-Given in other words, the previous paragraph describes that the nonhomogenous equation can directly relate to the homogenous equation and its solutions through simple linear combonations of their solutions. If you have two solutions to the nonhomogenous differential equation, then you can find the fundamental solution to the corresponding homogenous differential equation.
+Given in other words, the previous paragraph describes that the nonhomogenous equation can directly relate to the homogenous equation and its solutions through simple linear combinations of their solutions. If you have two solutions to the nonhomogenous differential equation, then you can find the fundamental solution to the corresponding homogenous differential equation.
 
 The general (fundamental) solution to the nonhomogenous differential equation (1) is the following:
 
@@ -246,7 +246,7 @@ We discuss below three possible cases for the form of the **particular** solutio
 
     **Example 5**:
     $$
-        y'' + y = tcos(2t)
+        y'' + y = t\cos(2t)
     $$
     The roots are the same as Example 4, but now $\beta=2$ and therefore $\alpha \pm \beta i = \pm 2i \not = r$. We then use case 3.1 and the particular solution is the following:
     $$
@@ -262,7 +262,7 @@ To solve a nonhomogenous 2nd order differential equation in the form of equation
 3. Use the above cases explained in section [The General Cases for 2nd Order Nonhomogenous DEs] to find the particular solution.
 4. Given your particular solution, $Y(t)$, and the solution to the homogenous equation, $c_1y_1 + c_2y_2$, form the nonhomogenous general solution:
     $$
-        y = \phi(t) = c_1y_1 + c_2y_2 + Y(t)
+        y = \phi(t) = c_1y_1 + c_2y_2 + y_p(t)
     $$
 5. Any remaining arbitrary constants can now be solved for using the initial conditions provided.
 

@@ -5,7 +5,7 @@
 <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto|Roboto+Mono" rel="stylesheet">
 <link rel="stylesheet" href="../markdeep-style.css">
 
-**Chapter 3**
+**Chapter 3 - Energy Bands and Charge Carriers**
 
 # Energy Bands
 
@@ -212,7 +212,7 @@ Given what we now know about doping, carriers, and EHPs, we wish to find a way t
 
 ## The Fermi Level
 
-It is a known fact that electrons obey the Fermi-Dirac distribution when inside of a solid structure, like a lattice. Combining the quantum-mechanical nature of electrons (Pauli exlusion, wave nature, etc), we arrive at the following equation for the probability of an energy state being filled:
+It is a known fact that electrons obey the Fermi-Dirac distribution when inside of a solid structure, like a lattice. Combining the quantum-mechanical nature of electrons (Pauli exlusion, wave nature, etc), we arrive at the following equation for the probability of an available energy state being filled:
 
 $$
     \begin{equation}
@@ -236,7 +236,159 @@ A few more observations can be found by varying the value of $T$ and noticing th
 
 At 0K, the probability graph is a rectangular surface, where it makes a sharp decrease at the Fermi level. This graph perfectly lines up with the definition of the Fermi level, as at 0K, we will never find an electron above $E_f$. Increasing the temperature shows that the slope around $E_f$ will decrease, but stay centered at $E_f$. This also highlights the important aspect that as we add more thermal energy to the system, we should expect that some electrons will occupy higher level energy states, above the Fermi level.
 
+If we were looking for the probability that a vacant energy state in the conduction band was filled, we would use $f(E)$, where $E$ is greater than the conduction band level. If we were looking for the probability that a hole exists in the valence band, we would use $1-f(E)$, where $E$ is less than the valence band energy. This can be seen in the graph above by looking at the smaller sections of the graph that are created by the changing temperature. If $T=0K$, then there is no shifting, and conduction band values are always $0$ and valence band values are always $1$
+
+![Fermi-Dirac w/ Band Graph](Chapter_3/Fermi-Dirac-BandGraph.png)
+
+Placing the Fermi-Dirac distribution on its side and overlaying on a simplified band gap diagram lets us see the differences between intrinsic and extrinsic semiconductors and their carrier concentrations.
+
+Looking at the intrinsic semiconductor, it is immediately noticed that the $E_f$ value is placed near the center of the band gap, which we would expect. An intrinsic semiconductor only creates conduction band electrons and valence band holes in pairs, or EHPs; meaning that there must be an equal number of holes and electrons. This causes the distribution to be centered in the band gap. If we look at the $f(E)$ values, where $E$ is above the conduction band or below the valence band, we notice that they would be the same. Again this lines up with the concept of EHPs.
+
+For an n-type semiconductor, the $E_f$ value is shifted up. This correlates to the extra electrons in a n-type doped semiconductor, as the donor energy level would add more electrons above the orignally centered intrinsic $E_f$ level. Since the $E_f$ level is related to the probability of finding electrons at 0K, this action of shifting up the Fermi level with n-type semiconductors should make sense. 
+
+We also notice in the image that due to the Fermi level being higher, the distribution is much closer to the conduction band, causing $f(E_c + \Delta E)$ values to be greater than that of $f(E_v - \Delta E)$, where $E_c$ and $E_v$ are the conduction and valence band energy levels, respectively, and $\Delta E$ is a shifting value that causes $f(E)$ to return the probability for the same relative distance from a band level. In other words, this above can also be said as the following: Given we energy levels at equivalent distances from the edge of the conduction band and valence band, we find the probabilities to not be the same.
+
+Similar things can be said for p-type semiconductors; the Fermi level is shifted towards the valence band due to the acceptor level and the probability of finding a hole in the valence band ($1-f(E)$) is greater than the probability of finding an electron in the conduction band. The above formula also still works, with $\Delta E$, but just in the opposite effect.
+
+## Electron and Hole Concentrations at Equilibrium
+
+Given what we now know about how electrons are distributed in semiconductors, we now wish to find numerical values for the concentrations of electrons and holes. We find that the following gives us value for the concentration of electrons in the conduction band at equilibrium:
+
+$$
+    \begin{equation}
+    \label{CarrierConcentration}
+    n_0 = \int^{\infty}_{E_c} f(E)N(E)dE
+    \end{equation}
+$$
+
+where $f(E)$ is the Fermi-Dirac distribution function, $N(E)$ is the density of states given an energy level, and $dE$ is a small section of the energy range. These three combined give an electron concentration for a small chunk of the energy band. Integrating over the entire conduction band give us the total electron concentration for that material. Density of states is a value derived from quantum mechanics and the Pauli exlusion principle, where its output is (states/$cm^3$).
+
+Deriving the value for $N(E)$ gives the fact that the density of states is proportional to $E^{1/2}$. This then means that the distribution of states is high at $E_c$ and $E_v$, but quickly tapers off as $E$ moves further outwards (higher and lower, respectively). Given how the carrier concentration is derived above, we can determine the general shape of the electron and hole concentration for different types of semiconductors. The picture below demonstrates this.
+
+![Electron and Hole Concentration based on different doped semiconductors](Chapter_3/Electron-HoleConcentration.png)
+
+The intrinsic semiconductor has equal concentrations of electrons and holes, which we would expect, as $p_i$ and $n_i$ are equal at all temperatures for intrinsic materials. For n-type and p-type, the Fermi level is shifted up and down, respectively. This causes the carrier concentration to increase towards whichever direction it the Fermi level moved towards. For example, the p-type semiconductor has a much higher hole concentration then its electron concentration. The opposite can be said for n-type semiconductors.
+
+If we were to simplify equation [CarrierConcentration] by introducing an _effective_ density of states, $N_c$, where $N_c$ is the density located at the conduction band edge, we would end end up with the following equation:
+
+$$
+    \begin{equation}
+    \label{SimplifiedElectronCarrierConcentration}
+    n_0 = N_cf(E_c)
+    \end{equation}
+$$
+
+Equation [SimplifiedElectronCarrierConcentration] removes the integral by only looking at the band edge. The Fermi function $f_(E_c)$ can also be simplified by assuming $E_c$ is at least multiple $kT$ away from $E_f$,
+
+$$
+    \begin{equation}
+    \label{SimplifiedElectronFermiFunction}
+    f(E_c) = \frac{1}{1 + e^{(E_c-E_f)/kT}} \approxeq e^{-(E_c - E_f)/kT}
+    \end{equation}
+$$
+
+Applying equation [SimplifiedElectronFermiFunction] to equation [SimplifiedElectronCarrierConcentration] arrives us at the following:
+
+$$
+    \begin{equation}
+    \label{ElectronConcentration}
+    n_0 = N_c e^{-(E_c - E_f)/kT}
+    \end{equation}
+$$
+
+This simplified equation is much easier to use for finding the electron carrier concentration given the previous assumptions are true.
+
+We can also arrive at the same conclusion for the hole concentration by changing $f(E_c)$ to $[1-f(E_v)]$,
+
+$$
+    \begin{equation}
+    \label{SimplifiedHoleCarrierConcentration}
+    p_0 = N_v [1- f(E_v)]
+    \end{equation}
+$$
+
+$$
+    \begin{equation}
+    \label{SimplifiedHoleFermiFunction}
+    1 - f(E_v) = 1 - \frac{1}{1 + e^{(E_v-E_f)/kT}} \approxeq e^{-(E_f - E_v)/kT}
+    \end{equation}
+$$
+
+Applying equation [SimplifiedHoleFermiFunction] to equation [SimplifiedHoleCarrierConcentration] gives us the following:
+
+$$
+    \begin{equation}
+    \label{HoleConcentration}
+    p_0 = N_v e^{-(E_f - E_v)/kT}
+    \end{equation}
+$$
+
+For intrinsic materials, we know that the Fermi level is not directly in the middle of the but instead at some level, $E_i$, near the middle of the band gap. From this we understand that equation [ElectronConcentration] and equation [HoleConcentration] become the following:
+
+$$
+    \begin{equation}
+    \label{IntrinsicConcentrations}
+    n_i = N_c e^{-(E_c - E_i)/kT}, \space p_i = N_v e^{-(E_i - E_v)/kT}
+    \end{equation}
+$$
+
+We also know that for an intrinsic material, $n_i = p_i$, therefore the intrinsic concentration is
+
+$$
+    \begin{equation}
+    \label{IntrinsicConcentration}
+    n_i = \sqrt{N_cN_v} e^{-E_g/2kT}
+    \end{equation}
+$$
+
+where $E_g$ is the band gap of the semiconductor.
+
+The more important realization from equation [IntrinsicConcentration] and the previous equations is that the product of the electron and hole concentrations relates directly to the intrinsic concentration:
+
+$$
+    \begin{equation}
+    \label{SimpIntrinsicConc}
+    n_0 p_0 = n_i^2
+    \end{equation}
+$$
+
+Given equation [SimpIntrinsicConc], a doping concentration and the intrinsic concentration, we can find the other unknown concentration. The intrinsic concentration is normally known for the material, which makes equation [SimpIntrinsicConc] extremely useful for many problems.
+
+We also can simplify equation [HoleConcentration] and equation [ElectronConcentration] by using the above idea with the intrinsic concentration.
+
+$$
+    \begin{equation}
+    \label{IntrinElectronConc}
+    n_0 = n_i e^{(E_f - E_i)/kT}
+    \end{equation}
+$$
+
+$$
+    \begin{equation}
+    \label{IntrinHoleConc}
+    p_0 = n_i e^{(E_i - E_f)/kT}
+    \end{equation}
+$$
+
+(###) Summary of Carrier Concentrations
+
+The mess of equations given above all come from the idea of the carrier concentration being a summation of the combination between the density of states in a band and the Fermi function throughout that band. To simplify this, we introduced an _effective_ density of states, which does exactly what the effective mass does, allows us to find a value for the concentration at any point in the region of interest (the band diagram) by assuming a few key things, like the Fermi level's location. The imporant takeaways from above are the following:
+
+1. Doping your material will shift $E_f$ and cause the concentrations to vary, where the image in this section shows the effect.
+2. The Fermi level is not exactly in the center for intrinsic materials, but instead at some level $E_i$, nearby $E_f$
+3. We can directly relate the electron and hole concentrations (at equilibrium) to the intrinsic concentration through equation [SimpIntrinsicConc].
+4. The density of states equations increases by $E^{1/2}$ and the Fermi function results in a local max at $E_c$ and $E_v$ (within the bands), therefore, the maximum value for concentration is _not_ at the band edge, but instead just inside of the band. This can also be seen in the picture above.
+
+The equations of importance are the following:
+
+1. Eqn. [SimpIntrinsicConc] for finding either the hole or electron concentrations given you know the intrinsic concentration and one of the other concentrations
+2. Eqn. [ElectronConcentration] and eqn. [HoleConcentration] given you know the Fermi level, the temperature, the band energy levels, and the effective density of states for the given band.
+3. Eqn. [IntrinElectronConc] and eqn. [IntrinHoleConc] given you know the intrinsic concentration and the location of the intrinsic energy level and Fermi level.
+4. Eqn. [IntrinsicConcentration] given you know _both_ $N_c$ and $N_v$ and the band gap, _OR_ you need to find the band gap given $N_c$, $N_v$, and $n_i$.
+
+
 Citation
+--------
 
 All images are sourced from *Solid State Electronic Devices*, 7th Editon, by Ben Streetman and Sanjay Banerjee
 
