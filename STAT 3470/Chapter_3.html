@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="theme-color" content="#141518" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto|Roboto+Mono" rel="stylesheet">
+<link rel="stylesheet" href="../markdeep-style.css">
+<link rel="shortcut icon" href="../book.svg">
+<html>
+<body>
+**Chapter 3**
+
+
+$$
+    \def\R{{\mathbb{R}}}
+    \def\Z{{\mathbb{Z}}}
+    \def\N{{\mathbb{N}}}
+
+    \def\and{{\cap}}
+    
+    \newcommand{\Zn}[1]{\mathbb{Z}_{\\#1}}
+    \newcommand{\ts}{\textsuperscript}
+$$
+
+# Discrete Random Variables and Probability Distributions
+
+## Random Variables (3.1)
+
+A random variable is *numeric* variable whose outcome cannot be known with certainty ahead of time.
+
+!!! note
+    If the underlying variable is not unique, a number must be assigned to each category 
+
+Two types of random variables:
+1. Discrete
+    * Finite or countable infinite sample space (basically just a discrete variable or signal)
+2. Continuous
+    * Uncountable infinite sample space (intervals)
+
+!!! example: Examples:
+    Let $X$ = the number of free throws made out of n shots.
+    
+    Discrete RV (countable finite) Set Notation:
+    $S = \{0, 1, 2, 3, \ldots, n\}$
+
+    Let $Y$ = the wait time, in (integer) minutes, of a randomly selected caller to the IRS.
+    
+    Discrete RV (countable infinite) Set Notation:
+    $S = \{0, 1, 2, 3, \ldots\}$
+
+    Let $W$ = the length of time from arrival at a COTA bus stop until the bus arrives.
+
+    Continuous RV (infinite sample space) Set Notation:
+    $S = [0,\infty)$
+
+
+## Probability Distributions (3.2)
+
+The probability distribution of a random variable X tells how the total probability of 1 is distributed among the various possible x values. Can somewhat be defined as the probability of a certain value appearing as x within a distribution.
+
+We can describe the probability distribution of a discrete random variable with either of the following functions:
+
+1. The probability mass function, pmf
+    * Lists all possible values of a random variable and how likely each is to appear.
+    * Often written as either a table or a function
+    * Uses lowercase symbols for the distribution
+    * pmf: $P(X=x) = p(x) = f(x)$
+        * Properties of pmf functions:
+            1. $0 \le p(x) \le 1$ for all $x$
+            2. $\sum_{i=1}^k P(x_i) = 1$
+2. The cumulative distribution function, cdf
+    * $F(x) = P(X\le x)$ defined for all $x\in \R$
+    * or $F(t) = P(X\le t)$ with dummy variable $t$
+    * Uses uppercase symbols for the distribution
+    * Properties of cdf:
+        1. $F(x) \ge 0$
+        2. $F(x)$ is increasing
+        3. $\lim_{x \to -\infty} F(x) = 0$, $\lim_{x \to +\infty} F(x) = 1$
+
+!!! notation: Notation
+    * $X$: random variable 
+    * $x$: a particular value of a random variable
+
+!!! example: pmf Example
+    Suppose X has the following pmf:
+    | x    | 1  | 3  | 4  | 6  |
+    |------|----|----|----|----|
+    | f(x) | .2 | .4 | .1 | .3 |
+
+    **What is $P(X>3)$?**
+
+    $P(X=4\ \text{or} \ X=6) = .1 + .3 = .4$
+    
+
+    **What is the cdf of $X$?**
+
+    $P(X\le x)$ is the cdf.
+
+    $$
+        F(x) = 
+        \begin{cases}
+            0 & \text{if}\ x \lt 1 \\
+            .2 & \text{if}\ 1 \le x \lt 3 \\
+            .6 & \text{if}\ 3 \le x \lt 4 \\
+            .7 & \text{if}\ 4 \le x \lt 6 \\
+            1 & \text{if}\ 6 \le x
+        \end{cases}
+    $$
+
+    To find a probability from a cdf, look at the piecewise function and find the jump between values. For example, $P(X=3)$ can be found by finding where we jump at the value of $x=3$. There is a jump from .2 to .6, which means $P(X=3)=.4$
+
+
+!!! example: Roulette
+    Let Y = the number the ball lands on in a single spin of roulette
+
+    For sake of ease, we replace 00 with -1.
+
+    $f(y)$ equals the following table:
+    | y      | -1   | 0    | 1    | 2    | ... | 35   | 36   |
+    |--------|------|------|------|------|-----|------|------|
+    | P(X=y) | 1/38 | 1/38 | 1/38 | 1/38 |     | 1/38 | 1/38 |
+
+    or $f(y) = 1/38$ for $y \in \{-1,0,1,2,\dots,35,36\}$
+
+    Each position is has a $1/38$ chance of being landed on.
+
+    **What is the cdf, $F(y)$?**
+
+    $$
+        F(y)=
+        \begin{cases}
+        0 & \text{if}\ y \lt -1 \\
+        \frac{1}{38} & \text{if}\ -1 \le y \lt 0 \\
+        \frac{2}{38} & \text{if}\ 0 \le y \lt 1 \\
+        \vdots       &  \vdots \\
+        1 & \text{if}\ 36 \le y \\
+        \end{cases}
+    $$
+
+
+    Let W = the winnings from a $1 bet on a single number in a single spin of roulette
+
+    Spinning for a single number results in $35 per $1.
+
+    $f(w)$ equals the following table:
+    | w      | -1    | 35   |
+    |--------|-------|------|
+    | P(W=w) | 37/38 | 1/38 |
+
+    **What is the cdf, $F(w)$?**
+    
+    $$
+        F(w)=
+        \begin{cases}
+            0               &   \text{if}\ w \lt -1 \\
+            \frac{37}{38}   &   \text{if}\ -1 \le w \lt 35 \\
+            1               &   \text{if}\ 35 le w
+        \end{cases}
+    $$
+
+## Expected Values (3.3)
+
+The average of the expected outcome of a distribution. For example, if distribution looks like the following:
+
+| w      | -1    | 35   |
+|--------|-------|------|
+| P(W=w) | 37/38 | 1/38 |
+
+What would the expected outcome be? If you wrote out 38 values from this distribution, you would expect 37 values that are -1, and 1 value that is 38:
+
+$$
+\underbrace{-1,-1,-1,\dots}_\text{37 times},35 \rightarrow \text{Average} = -\frac{2}{38}
+$$
+
+The expected value of a discrete random variable is denoted by $E(x) = \mu_x$ and is given by:
+$$
+    E(X) = \sum_i\overbrace{x_i}^{\rlap{\text{Dist. value}}} \underbrace{f(x_i)}_{\rlap{\text{pmf}=P(X=x_i)}}
+$$
+
+In the above example, we can use this formula to find the same expected value:
+
+$$
+    E(w) = \sum_i w_i f(w_i) = (-1)(\frac{37}{38}) + (35)(\frac{1}{38}) = -\frac{2}{38}
+$$
+
+This is a linear combination of the random variable: 
+
+$$
+    E(aX+b) = E(aX) + \underbrace{E(b)}_\rlap{\text{Constant}} = aE(x) + b
+$$
+
+Functions of a Random Variable:
+
+$$
+    E(h(x)) = \sum_ih(x_i)f(x_i)
+$$
+
+!!! example: Roulette Example
+    What is the expected value for a $1 wager on black (pays 1 to 1)?
+
+    There are 18 black spaces on a roulette wheel.
+
+    $f(x)$ has the following table:
+    | x | -1 | 1 |
+    |----|----|----|
+    | f(x) | 20/38 | 18/38 |
+
+    $$
+        E(x) = (-1)(\frac{20}{38}) + (1)(\frac{18}{38}) = -\frac{2}{38}
+    $$
+
+    What is the expected value for a $1 wager on green (pays 17 to one)?
+    
+    $f(x)$ has the following table:
+    | x | -1 | 17 |
+    |----|----|----|
+    | f(x) | 36/38 | 2/38 |
+
+    $$
+        E(x) = (-1)(\frac{36}{38}) + (17)(\frac{2}{38}) = -\frac{2}{38}
+    $$
+
+    On a roulette wheel, all wagers have the same expected outcome.
+
+### Variance
+    
+The variance of a discrete random variable is denoted by $V(X) = Var(X) = \sigma^2_X$ and is given by:
+
+$$
+    V(X) = E(X^2) - [E(x)]^2
+$$
+
+
+Alternate Formula:
+$$
+    V(X) = \sum_i(x_i-\mu_x)^2 \underbrace{f(x_i)}_{\text{pmf}}
+$$
+
+Variance is a measure of variablilty of a variable. Standard deviation is the square root of variance:
+
+$$
+    \text{Standard Deviation} = SD(X) = \sigma_X = \sqrt{Var(X)}
+$$
+
+Variance is also a linear combination:
+
+$$
+    V(aX+b) = V(aX) = a^2V(X)
+$$
+
+$a$ is squared when pulled out here because variance is squared as is, therefore a^2 is what need to be pulled out.
+
+!!! note: Units
+    Variance is not in a useable unit. If your original unit is [dollars] then variance will have the units of [dollars^2]. Standard Deviation does have the correct unit of [dollars].
+
+!!! example: Roulette
+    What is the variance for a $1 wager on black (pays 1 to 1)?
+
+    $f(x)$ has the following table:
+    | x | -1 | 1 |
+    |----|----|----|
+    | f(x) | 20/38 | 18/38 |
+
+    We previously found that $E(x)$ is $-\frac{2}{38}$
+
+    $$
+        V(X) = E(X^2) - [E(X)]^2 = 1 - (-\frac{2}{38})^2 = .99273 \\
+        SD(X) = .9986 \ \text{(dollars)}
+    $$
+    
+    Alternate formula:
+    $$
+        V(X) = (-1 - (-\frac{2}{38}))^2(\frac{20}{38}) + (1-(-\frac{2}{38}))^2(\frac{18}{38}) = 0.99723 \ \text{(dollars)}^2
+    $$
+    
+    What is the variance for a $1 wager on green (pays 17 to 1)?
+
+    $f(x)$ has the following table:
+    | x | -1 | 17 |
+    |----|----|----|
+    | f(x) | 36/38 | 2/38 |
+
+    We found that the $E(x)$ was $-\frac{2}{38}$
+
+    $$
+        V(X) = \sigma^2_X = (-1 - (-\frac{2}{38}))^2 (\frac{36}{38}) + (17 - (-\frac{2}{38}))^2 (\frac{2}{38}) = 16.1551 \ \text{(dollars)}^2 \\
+        SD(X) = \sigma_X =  4.0193 \ \text{(dollars)}
+    $$
+
+    This result makes sense in regards to how roulette should work. We should find that a more risky bet (green relative to black) will result in a higher variance. This is because the payout will be higher, but hte chances of getting a payout are lower. Every standard deviation from the mean is ~4 dollars for green, while it is ~1 dollar for black.
+
+    What is the variance for a $10 wager on green (pays 17 to 1)?
+
+    $$
+        V(X) = (-10 - (-\frac{2}{38}))^2 (\frac{36}{38}) + (170 - (-\frac{2}{38}))^2 (\frac{2}{38}) = 160.1551 \ \text{(dollars)}^2
+    $$
+
+    If you multiply your bet by $a$, the variance will increase by $a^2$.
+    
+
+## Bernoulli and Binomial Distributions (3.1 & 3.4)
+
+We've already discussed general random distributions, but there are two distributions that occur commonly: Bernoulli and Binomial.
+
+### Bernoulli Distribution
+
+A discrete random variable has a Bernoulli distribution if it takes on the value $1$ with probability $p$ and the value of $0$ with probability $1-p$. Commonly used in success and failure trials.
+
+| $x$ | $0$ | $1$ |
+|----|----|----|
+| $f(x)$ | $1-p$ | $p$ |
+
+$$
+    X \sim Bernoulli(p)\ \text{or}\\
+    X \sim Bern(p)
+$$
+
+The $p$ in the distribution is a parameter that fills in the chart above.
+
+#### Expected Value
+
+$$
+    E(X) = 0(1-p) + 1(p) = p
+$$
+
+An example of a Bernoulli distribution is a coin toss. If you were to take the the average (expected value) of many trials, you would get the probability of landing on one side. In the case of Bernoulli distributions, that one side is $p$. This then makes sense that the expected value is $p$.
+
+#### Variance
+
+$$
+	\begin{aligned}
+    V(X) &= E(X^2) - [E(X)]^2 \\
+         &= p - p^2 \\
+         &= p(1-p)
+    \end{aligned}
+$$
+
+
+### Binomial Distribution
+
+A discrete random variable that models counts has a binomial distribution if it meets the following:
+
+1. Binary
+    * There is a chance of success/failure
+    * 2 different results
+2. Independence
+    * Each trial does not affect the next
+3. Number of fixed trials
+4. Same probability of success
+
+$X$ counts the number of successes in the fixed n trials.
+
+Notice that a binomial random variable is the sum of independent Bernoulli random variables. The pdf of a binomial random variable is the following:
+
+$$
+    f(x) = {n \choose x} p^x(1-p)^{n-x} \\
+    X \sim Binom(n,p)\ \text{or}\\
+    X \sim B(n,p)\ \text{or} \\
+    X \sim b(x, n, p) 
+$$
+
+We can think of a binomial random variable as the distribution created by repeated trials of a Bernoulli random variable. Said otherwise, it is like looking at an entire distribution of flipping a coin $n$ times rather than just looking at how a single coin flip would work.
+
+!!! example: Binomial
+    When you spin a penny, the chance of it landing on heads is about 20%. Suppose you spin 10 pennies.
+
+    **What is the probability of getting exactly 3 heads**
+    $$
+        X \sim Binom(10, 0.2)\\
+        P(X=3)={10\choose 3}(0.2)^3(0.8)^7=0.2013
+    $$
+
+    **What is the probability of getting at most 3 heads**
+    $$
+        P(X\le 3) = P(X=0)+P(X=1)+P(X=2)+P(X=3) \\
+    $$    
+    Calculating this is a lot of work, so instead, we resort to pre-calculated tables.
+    
+    ![Binomial Table from Book (Appendix A.1)](Chapter_3/binomialtable.png)
+    
+    This table is the CDF of the binomial distribution given that $n=10$. This means that to find $P(x\ge 3)$ given that $p=0.20$, we find the column labeled $0.20$, then move down the rows till we find $3$. The number located there is the probability for $P(x\ge 3)$.
+
+    It's worth noting that this table is the CDF, and is a *cumulative* probability. To find the a value that is not cumulative, say $P(x=3)$, we need to calculated $P(x\le 3) - P(x\le 2)$. These two values are easily found on the table and for this example is the following: $0.879 - 0.678 = 0.201$.
+    
+    Continuing with the original example we find that $P(X\ge 3)$ is the following:
+    $$
+        P(X\le 3) = 0.879
+    $$
+
+    **What is the probability of getting at least 3 heads**
+    
+    For this question, we must use the complement rule. CDF gives the less than or equal to probabilities, but we need a greater than or equal to probability.
+
+    $$
+        P(X\ge 3) = 1-P(X\le 2) = 1-0.678 = 0.322
+    $$
+    
+#### Mean & Variance
+
+$$
+    E(X) = np \\
+    V(X) = np(1-p)
+$$
+
+These are somewhat self explanatory. If we flip a coin $n=10$ times and the coin has a $p=0.5$ chance of landing on heads, we should find that we have 5 heads and 5 tails. The variance is a bit more complicated but it follows the same idea, we should find that we vary by half of our expected value ($V(X)=10\cdot0.5\cdot(1-0.5)=2.5$).
+    
+
+!!! example: Tophat Examples
+    Suppose you have a multiple choice test with 4 answer choices on each of 10 questions. Let X be the total number of questions you get right if you randomly guess on all the questions. 
+    
+    **What is the $P(X=4)$**?
+    $$
+        X \sim B(10, 0.25) \\
+        f(x) = {10 \choose 4} (0.25)^4 (0.75)^6 = 0.1459
+    $$
+    
+    We can also do this problem by finding $P(X\lt 4) - P(X\le 3)$ from the binomial table. The result is the same, as the table lists $0.922 - 0.776 = 0.146$.
+    
+    
+## Geometric and Negative Binomial Distributions (3.5)
+
+We find that the Bernoulli distribution is easily applied to different distribution types.
+
+### Geometric Distribution
+
+Consider an experiment in which a sequence of indpendent Bernoulli trials, each with a probability of success $p$, is performed until the first success occurs. For example, flipping a coin until you get heads.
+
+$X$ is the number of trials until the first success (including that success).
+
+$$
+    S=\{1,2,3,\dots\}\\
+    X \sim Geom(p)
+$$
+
+$p$ is the probability of success. We only need to say what $p$ is; we don't have a fixed $n$ value like in the binomial distribution.
+
+$$
+    f(x) = p(1-p)^{x-1}
+$$
+
+#### Mean & Variance
+
+$$
+    E(X) = \frac{1}{p} \\
+    V(X) = \frac{1-p}{p^2}
+$$
+
+The expected value is similar to thinking "how many times should I expect to do an event till we succeed". Said otherwise, if for example we are rolling a dice till we land on a 6, how many times should we expect to roll till we get a 6. It makes some amount of sense that we should have expect 6 rolls, as $p=\frac{1}{6}$ for a standard dice. The variance is much less intuitive to understand so just use the formula, more or less.
+
+!!! example: Geometric Spinning Pennies 
+    Using the same setup from the previous example using spinning pennies, $P(\text{heads})=0.2$
+    
+    **What is the probability that the first heads is the 4th spin?**
+    $$
+        X \sim Geom(.2) \\
+        P(X=4) = (0.8)^3(0.2) = 0.1024
+    $$
+    
+    **How many spins on average will you need on average in order to get your first heads?**
+    $$
+        E(X) = \frac{1}{0.2} = 5
+    $$
+    
+### Negative Binomial Distribution
+
+Now suppose, instead of stopping at the first success we stop when the $k$ th success occurs. $X$ is the number of trials until the $k$ th success occurs.
+
+$$
+    f(x) = {{x-1} \choose {k-1}} p^k (1-p)^{x-k} \\
+    X \sim NegBinom(k,p)
+$$
+
+where $k$ is the number of successes, $p$ is the probability of a success. It can be immediately noticed that this formula is a more general form of the geometric distribution. If we take $k=1$, like it implicitly is in the geometric distribution, we find that $f(x) = p(1-p)^{x-1}$, which is the PMF of a geometric distribution.
+
+#### Mean & Variance
+
+$$
+    E(X) = \frac{k}{p} \\
+    V(X) = \frac{k(1-p)}{p^2}
+$$
+
+It takes us $\frac{1}{p}$ times to get to the first expected value, then we basically restart and have another $\frac{1}{p}$ to get to the next expected value, and so on. This results in an expected value of $\frac{k}{p}$. The variance is again complicated, but we can at least see that we're just multiplying the geometric distribution result by $k$.
+
+!!! example: Negative Binomial Spinning Pennies
+    In the spinning pennies example, $P(\text{heads})=0.2$
+    
+    **What is the probability the 2nd heads will happen on spin 6?**
+
+    $k=2$ and $x=6$
+    
+    $$
+        P(X=6) = {5 \choose 1}(0.2)^2(0.8)^4 = 0.08192
+    $$
+
+!!! example: Tophat Examples for 3.5
+    Suppose 1.34% of the items produced by a particular assembly line are defective. 
+    
+    **How many items would be expected to be produced until you get 7 defective items?**
+
+    $k=7$
+    
+    We're looking for the expected value (mean) for the 7th defective item.
+
+    $$
+        E(X) = \frac{7}{0.0134} \approx 522.39
+    $$
+    
+    Suppose there is a 10% chance of getting a prize in a cereal box.
+
+    **If you buy boxes until you collect 5 prizes, what is the standard deviation of the total number of boxes you will need to buy?**
+    
+    The standard deviation is the square root of variance.
+    
+    $k=5$
+
+    $$
+        \sigma^x = \sqrt{Var(X)} = \sqrt{\frac{5(1-0.1)}{0.1^2}} \approx 21.21
+    $$
+    
+
+
+
+</body>
+</html>
+<!--html&body tags needed to get live-server to work-->
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
+<script src="../markdeep.min.js" charset="utf-8"></script>
+<script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

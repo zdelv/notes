@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="theme-color" content="#141518" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto|Roboto+Mono" rel="stylesheet">
+<link rel="stylesheet" href="../markdeep-style.css">
+<script src="https://unpkg.com/d3@3/d3.min.js"></script>
+<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+<html>
+<body>
+**Section 1: Basic Concepts**
+
+
+$$
+    \def\R{{\mathbb{R}}}
+    \def\Z{{\mathbb{Z}}}
+    \def\N{{\mathbb{N}}}
+    
+    \newcommand{\Zn}[1]{\mathbb{Z}_{\\#1}}
+$$
+
+# Basics
+
+This is mostly review, so these notes are really sparse.
+
+## Ohm's Law
+
+Ohm's law provides a relationship between the voltage dropped across a resistive element and the current flowing through it
+
+$$
+    v = iR
+$$
+
+## Resistors, Capacitors, & Inductors
+
+### Resistors:
+Resist the flow of current through a circuit. Although all lumped elements can have some resistance, this lumped element specficially only defines resistance
+$$
+    v = iR
+$$
+The impedance of a resistor is represented by just $Z_r$, which is equivalent to $R$
+
+### Capacitors
+Resists the change of current through the component through a differential equation about the change in voltage over time.
+
+$$
+    i = C\frac{dv}{dt}
+$$
+The impedance of a capacitor is the following:
+$$
+    Z_c = \frac{-j}{\omega C} = \frac{1}{j\omega C}
+$$
+On the complex plane, this form causes a capacitor to be a purely imaginary value, pointing in the $-i$ direction.
+
+### Inductors
+Resist the change of voltage through the component through a differential equation about the change in current over time.
+
+$$
+    v = L\frac{di}{dt}
+$$
+
+The impedance of a inductor is the following:
+$$
+    Z_L = j\omega L
+$$
+On the complex plane, this form causes a capacitor to be a purely imaginary value, pointing in the $-i$ direction.
+
+
+## Kirchoff's Laws
+
+Kirchoff's Laws apply Ohm's Law to arbitary circuits and allows us to determine the voltage or current at any point or on any element in a circuit.
+
+### Nodal Analysis (KCL)
+
+![KCL](Section_1/KCL.png)
+
+### Nodal Analysis (KVL)
+
+![KCL](Section_1/KVL.png)
+
+### Superposition
+
+Not necessarily a Kirchoff Law, but still important to mention. A linear circuit can be analyzed by breakjing the circuit into independent pieces, all containing one active circuit element. An example below:
+
+![Superposition](Section_1/Superposition.png)
+
+## Misc Circuits
+
+### Voltage Dividers
+
+![Voltage Divider](Section_1/VoltageDivider.png)
+
+In the above circuit, each voltage can be found with the following equation and by switching the resistance on the numerator:
+
+Example: Finding $V_B$
+$$
+    V_B = \frac{R_B}{R_A + R_B + R_C} \cdot V_X
+$$
+
+The resistors **must** be in series for this to work.
+
+## Current Dividers
+
+![Current Divider](Section_1/CurrentDivider.png)
+
+In the above circuit, the current through each resistor can be found using the following formula:
+
+Example: Finding $I_B$
+$$
+    I_B = \frac{\frac{1}{R_B}}{\frac{1}{R_A}+\frac{1}{R_A}+\frac{1}{R_A}} \cdot I_X =
+    \frac{G_B}{G_A + G_B + G_C} \cdot I_X \\
+    \text{where, } G_X = \frac{1}{R_X}
+$$
+
+The resistors **must** be in parallel for this to work.
+
+
+## Resonance (RLC Circuits)
+
+RLC circuits are circuits containing an AC input signal and a resistor, capacitor, and inductor. These three elements can be placed in series or in parallel, resulting in similar resonance patterns but different open/short circuit patterns.
+
+### Series RLC
+
+![Series RLC Circuit](Section_1/SeriesRLC.png)
+
+Impedance, $Z$, of the above Series RLC circuit:
+
+$$
+\begin{aligned}
+    Z &= R + j\omega L + \frac{1}{j\omega C} \\
+      &= R + j(\omega L - \frac{1}{\omega C}) 
+\end{aligned}
+$$
+
+This impedance is an imaginary number. When we cancel out (ie set equal to 0) the imaginary part, $Im(Z)$, we find the following:
+
+$$
+    \omega L - \frac{1}{\omega C} = 0 \\
+    \omega = \frac{1}{\sqrt{LC}} \ \text{(rad/s)} \\
+    f = \frac{1}{2\pi \sqrt{LC}} \ \text{(Hz)}
+$$
+
+$\omega$ and $f$ represent the resonance radial frequency and frequency, respectively. This is the frequency that an input signal must have to result in the maximal output voltage. This can be understood by what we just did to find $\omega$ and $f$. Setting the imaginary part equal to zero results in $Z = R$, which is the highest real value this circuit can produce.
+
+!!! note: At resonance frequency
+    Another good note is that given the input $f$ is at the resonance frequency and $R = 0$, we can deduce that the series LC will act like a short circuit. This is because $Z = 0$ which results in $V = i * 0$, or a zero voltage. For this to stay true, current must rapidly increase to infinity, which is the definition of a short circuit.
+
+### Parallel RLC
+
+![Parallel RLC Circuit](Section_1/ParallelRLC.png)
+
+!!! note: Parallel Impedances
+    One small thing to note before deriving the resonance frequency here is how to handle parallel impedances. An impedance is the phasor representation of a resistance (kinda) so they can be treated the same in regards to parallel/series addition. 
+    $$
+        \frac{1}{Z_{total}} = \sum^{N}_{k=1} \frac{1}{Z_k} = \sum^{N}_{k=1} Y_k \\
+        \text{where, } Y_k = \frac{1}{Z_k}
+    $$
+    $Y_k$ is the admittance of the element, the phasor equivalent to conductance, $G$.
+
+Beginning the derivation here, we start by finding the total impedance (or admittance) of this parallel RLC circuit:
+
+$$
+\begin{aligned}
+    Y &= G + \frac{1}{j\omega L} + j\omega C \\
+      &= G + j(\frac{1}{\omega L} + \omega C)
+\end{aligned}
+$$
+
+We derive $\omega$ and $f$ similarly to the series derivation here:
+
+$$
+    \frac{1}{\omega L} + \omega C = 0 \\
+    \omega = \frac{1}{\sqrt{LC}} \ \text{(rad/s)} \\
+    f = \frac{1}{2\pi \sqrt{LC}} \ \text{(Hz)}
+$$
+
+Unsurprisingly, we find the same results for $\omega$ and $f$.
+
+!!! note: At resonance frequency
+    At resonance frequency we find that $Y = G + j0$ which results in $Y = G$. If G is $0$ then the parallel LC will act like an open circuit. Again looking at $V = i * R$, if $G = 1/R$, then we know that if $G = 0$, $R$ must equal $\infty$. An infinite resistance is does not let any current through, thus resulting in an open circuit.
+
+
+## Amplifiers
+
+Amplifiers change a signal's values linearly (at least, with an ideal model), causing a gain, $A$, on each value.
+
+Amplifier Gain:
+$$
+    V_{out} = V_{in} * A
+$$
+
+Amplifiers can be written like the following two circuit elements:
+
+![Amplifier Circuit Elements](Section_1/Amp.png)
+
+They can either be drawn with a positive and negative input for both $V_{in}$ and $V_{out}$ or with a common ground attached to the input, output, and amplifier.
+
+### The Ideal Case
+
+In an ideal world, the operational amplifier has a linear curve for its $V_{in}$-$V_{out}$ plot. This results in a a clean output voltage for each input voltage and mean the operational amplifier is a linear element.
+
+We classify gain as the following:
+$$
+\begin{aligned}
+    \text{Voltage Gain:}\  A_v &= \frac{v_{out}}{v_{in}} \\
+    \text{Current Gain:}\  A_i &= \frac{i_{out}}{i_{in}} \\
+    \text{Power Gain:}\  A_p = \frac{\text{Load Power}}{\text{Input Power}} &= \frac{v_{out}i_{out}}{v_{in}i_{in}} = A_iA_v
+\end{aligned}
+$$
+
+## 3020 Group Number
+
+4
+
+
+
+
+</body>
+</html>
+<!--html&body tags needed to get live-server to work-->
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
+<script src="../markdeep.min.js" charset="utf-8"></script>
+<script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

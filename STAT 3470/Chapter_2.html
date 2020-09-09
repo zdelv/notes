@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="theme-color" content="#141518" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto|Roboto+Mono" rel="stylesheet">
+<link rel="stylesheet" href="../markdeep-style.css">
+<link rel="shortcut icon" href="../book.svg">
+<html>
+<body>
+**Chapter 2**
+
+
+$$
+    \def\R{{\mathbb{R}}}
+    \def\Z{{\mathbb{Z}}}
+    \def\N{{\mathbb{N}}}
+
+    \def\and{{\cap}}
+    \def\or{{\cup}}
+    
+    \newcommand{\Zn}[1]{\mathbb{Z}_{\\#1}}
+$$
+
+# Probability
+
+
+## Rule of Multiplication
+
+The rule of multiplication applies when we want to know the probability of the intersection of two events; that is, we want to know the probability that two events (A & B) both occur.
+
+$$
+    P(A\and B) = P(A)\cdot P(B|A)
+$$
+
+## Rule of Addition
+
+The rule of addition applies to the following situation. We have two events, and we want to know the probability that either event occurs.
+
+$$
+	\begin{aligned}
+    P(A\or B) &= P(A) + P(B) - P(A\and B) \\
+              &= P(A) + P(B) - P(A)\cdot P(B|A) \leftarrow \text{Rule of multiplication}
+    \end{aligned}
+$$
+
+More than 2 probabilities results in a multiplicative affect on the rule:
+
+$$
+    P(A\or B\or C) = P(A) + P(B) + P(C) - P(A\and B) - P(A\and C) - P(B\and C) + P(A\and B\and C)
+$$
+
+## Negation Rule
+
+Negating a probability results in the probability that that event does *not* occur.
+
+$$
+    P(A) = 1 - P(A') \\
+    P((A\or B)') = P(A'\and B')
+$$
+
+
+## Law of Total Probability
+
+Given $A_1, A_2, A_3, ...$ as mutually exclusive and mutually exhaustive events, and B as any event:
+$$
+\begin{aligned}
+    P(B) &= P(A_1\and B) + P(A_2\and B) + \ldots + P(A_k\and B) \\
+         &= P(A_1)P(B|A_1) + P(A_2)P(B|A_2) + \ldots + P(A_k)P(B|A_k)
+\end{aligned}
+$$
+
+This is the Law of Total Probability, which allows us to change given probabilities from subsets into a probability applied to the encompasing set. Said otherwise, if we're given a probability in terms of a subset (eg $P(A|B)$) we can change that to a probability in terms of the entire set (eg $P(A\and B)$).
+
+Example of a Total Probability Diagram:
+************************************************************************************
+*
+*     0.2       +-------> 0.18 <- P(Fr)P(On|Fr) = P(Fr∩On)
+*+----------> Fr|  0.9
+*|              |  0.1
+*|              +-------> 0.02
+*|
+*|    0.3       +-------> 0.24
+*+----------> Sp|  0.8
+*|              |  0.2
+*|              +-------> 0.06
+*|
+*|    0.2       +-------> 0.08
+*+----------> Jr|  0.4
+*|              |  0.6
+*|              +-------> 0.12
+*|
+*|    0.3       +-------> 0.06
+*+----------> Sr|  0.2
+*               |  0.8
+*               +-------> 0.24
+*
+************************************************************************************
+
+In the example above, the probabilites of a subset occuring (eg picking a freshman, $P(Fr)$) is the first tier. Then, within that is the probabilites of an event given we have that subset only (eg picking someone off campus given they're a freshman, $P(Off|Fr)$). We find the last value on the branch by multiplying back upwards the branch till we get to the base. This value will be the probability in terms of the entire set (eg finding a freshman who lives off campus, $P(Fr\and Off)$).
+
+## Bayes Theorem
+
+Bayes Theorem allows us to change the "given" event in a probability. For example, we can change $P(A|B)$ into $P(B|A)$. This is extremely important and very useful.
+
+$$
+    P(A_j|B) = \frac{P(A_j\and B)}{P(B)} = \frac{P(A_j)P(B|A_j)}{\sum^N_{k=0} P(A_k)P(B|A_k)} \\
+    \text{where, } N = \text{the number of A's}
+$$
+
+
+# Sources
+
+Rule of Addition & Multiplcation: [Stattrek](https://stattrek.com/probability/probability-rules.aspx#:~:text=The%20probability%20that%20Events%20A%20or%20B%20occur%20is%20the,A%20and%20B%20are%20dependent)
+
+Everything Else: OSU STAT Department
+
+</body>
+</html>
+<!--html&body tags needed to get live-server to work-->
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
+<script src="../markdeep.min.js" charset="utf-8"></script>
+<script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

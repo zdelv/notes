@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="theme-color" content="#141518" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto|Roboto+Mono" rel="stylesheet">
+<link rel="stylesheet" href="../markdeep-style.css">
+<link rel="shortcut icon" href="../book.svg">
+<script src="https://unpkg.com/d3@3/d3.min.js"></script>
+<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+<html>
+<body>
+**Lesson 1**
+
+
+
+$$
+    \def\R{{\mathbb{R}}}
+    \def\Z{{\mathbb{Z}}}
+    \def\N{{\mathbb{N}}}
+    
+    \newcommand{\Zn}[1]{\mathbb{Z}_{\\#1}}
+$$
+
+# Signals
+
+
+## Important Signals
+Common vocabulary and notation for frequently encountered signals:
+
+* Real exponential
+* Sinusoid
+* Exponentially damped sinusoid
+* Step
+* Impulse
+* Ramp
+* Pulse
+
+## Complex Representations
+
+$$
+    \text{Imaginary Number Definition} \\
+    j = \sqrt{-1} \\
+    j^2 = -1 \\
+$$
+    
+$$
+    \text{Euler's Identity} \\
+    e^{j\theta} = \cos{\theta} + j\sin{\theta} \\
+$$
+    
+$$
+    \text{Cartesian Form} \\
+    \text{Given $x$,$y$ are in $\R$:} \\
+    z = x + jy\\
+$$
+
+## Real-valued Exponental Signals
+
+A decaying signal that starts at some value $c$ and decays at some rate $a$.
+
+
+$$
+x(t) = 
+\begin{cases}
+    ce^{-at} & t \ge 0 \\
+    0 & t \lt 0 \\
+\end{cases}
+$$
+
+Viewing the signal as an entire object, we can say the signal is constant with respect to time
+
+![Continuous Real-valued Exponential Signal](Lesson_1/RV_exp.png)
+
+The discrete variant is slightly different:
+
+$$
+x[n] =
+\begin{cases}
+    cr^n & n \gt 0 \\
+    0 & n \lt 0
+\end{cases}
+$$
+
+
+![Discrete Real-valued Exponential Signal](Lesson_1/RV_exp_samp.png)
+
+
+</body>
+</html>
+<!--html&body tags needed to get live-server to work-->
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
+<script src="../markdeep.min.js" charset="utf-8"></script>
+<script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
