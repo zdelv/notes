@@ -9,6 +9,18 @@
 
 **Chapter 2**
 
+$$
+    \def\R{{\mathbb{R}}}
+    \def\Z{{\mathbb{Z}}}
+    \def\N{{\mathbb{N}}}
+
+    \def\and{{\cap}}
+    
+    \newcommand{\Zn}[1]{\mathbb{Z}_{\\#1}}
+    \newcommand{\ts}{\textsuperscript}
+    \newcommand{\polar}[2]{#1\angle #2^\circ}
+$$
+
 # AC Phasors
 
 ## Non-AC Signals
@@ -56,9 +68,245 @@ Impedance across two terminals can be treated the same.
 *                    I
 ****************************************************************
 
+!!! example: Single Phase AC Circuit Example
+    ![Circuit](Chapter_2/example1.png)
+
+    * Voltage Source: 110V, 60Hz
+    * Load Impedance: $3+j4$ Ohms
+    * Cable Resistance: 1 Ohm
+    * Cable Reactance: 2 Ohms
+    * Capacitor Reactance: 6 Ohms
+    
+    **Calculate the currents in the cable, load, capacitor, voltages across the cable, load resistor, load inductor, and capacitor.**
+    
+    We know that $\bar{I}$ can be found with:
+    $$
+        \bar{I} = \frac{\bar{V}_s}{\bar{Z}_{tot}} \\
+    $$
+    
+    **Always use RMS for voltage calculation**
+    
+    $$
+        \begin{aligned}
+            \bar{Z}_{tot} &= \bar{Z}_{cable} + (R+jX_L) || (-jX_c) \\
+            &= 1+j2 + \frac{(3+j4)(-j6)}{3+j4-j6} \\
+            &= 1+j2 + 8.3 - j0.46 \\
+            &= 9.3 + j1.5
+        \end{aligned}
+    $$
+    
+    $$
+        \begin{aligned}
+            \bar{I} &= \frac{110\angle0^\circ}{9.3+j1.5} \\
+            &= \polar{110}{20}
+        \end{aligned}
+    $$
+    
+    $$
+        \bar{V}_{load} = \bar{V}_s - \bar{V}_{cable} = \polar{110}{0} - \polar{26}{54.3} = \polar{97}{-12.6}
+    $$
+
+    $$
+        \bar{I}_{load} = \frac{\bar{V}_{load}}{3+j4} = \frac{\polar{97}{-12.6}}{3+j4} = \polar{19.4}{-65.7}
+    $$ 
+    
+    $$
+        \bar{I}_c = \frac{\bar{V}_{load}}{\bar{Z}_c} = \frac{\polar{97}{-12.6}}{-j6} = \polar{16.2}{77.4}
+    $$
+    
+    $$
+        \bar{V}_R = \bar{I}_{load} * R = \polar{19.4}{-65.7} \cdot 3 = 
+    $$
+
+    $$
+        \bar{V}_{ind} = \bar{I}_{load} * \bar{Z}_{ind} = \polar{19.4}{-65.7} \cdot j4 = 
+    $$
+    
+    **What is the impedance angle of the RL load?**
+
+    **What is the impedance angle of terminals AB?**
+    
+    
+    This is a circuit comprable to something we would see on an exam
+    
+    
+# AC Power
+
+We have previously discussed average power and instantaneous power. Most of the following are related to average power.
+
+## Power Factor
+
+![Power Factor Graph](Chapter_2/powerfactor2.png)
+
+In the above picture, the current is slightly lagging the voltage. The angle $\theta$ is use to find the power factor. 
+
+$$
+    \bar{I} = \frac{\polar{120}{0}}{R+j\omega L} = a+jb
+$$
 
 
+Power Factor:
+$$
+    \bar{V} = \polar{V}{\theta_V}\\
+    \bar{I} = \polar{I}{\theta_I}\\
+    \theta = \theta_V - \theta_I\\
+    PF = cos(\theta_V - \theta_I) \leftarrow \text{Power Factor}
+$$
 
+Given a purely resistive load, we have 0 phase difference between the voltage and current.
+
+$$
+    \bar{V} = \polar{V}{0}\\
+    \bar{I} = \polar{I}{0}\\
+    PF = cos(\theta_V - \theta_I) = cos(0) = 1
+$$
+
+Given a purely inductive load, we have a $-90^\circ$ phase difference. With the current lagging the voltage.
+
+$$
+    \bar{V} = \polar{V}{0}\\
+    \bar{I} = \polar{I}{-90}\\
+    PF = cos(\theta_V - \theta_I) = cos(0 - (-90)) = 0
+$$
+
+Given a purely capacitive load, we have a  $90^\circ$ phase difference. With the voltage lagging the current.
+
+$$
+    \bar{V} = \polar{V}{0}\\
+    \bar{I} = \polar{I}{90}\\
+    PF = cos(\theta_V - \theta_I) = cos(0 - 90) = 0
+$$
+
+!!! example: Mini quiz
+    ![Graph](Chapter_2/miniquiz.png)
+
+    **This is a capacitve component**
+
+    False
+
+    **This is an inductive component**
+
+    True
+
+    **The current is leading the voltage by $90^\circ$ deg$**
+
+    False
+
+    **The current is lagging the voltage by $90^\circ$ deg$**
+
+    True
+
+    **The average power is zero**
+
+    True
+    
+
+## Complex, Apparent, Real, & Reactive Power
+
+Power factor angle: $\theta_{PF} = \theta_V - \theta_I$
+
+Real Power: 
+$$
+    P = |V||I|\cos{\theta_{PF}} = \frac{V_{max}}{\sqrt{2}}\frac{I_{max}}{\sqrt{2}}\cos{\theta_{PF}}
+$$ 
+
+Reactive Power: 
+$$
+    Q = |V||I|\sin{\theta_{PF}} = \frac{V_{max}}{\sqrt{2}}\frac{I_{max}}{\sqrt{2}}\sin{\theta_{PF}}
+$$ 
+
+Complex Power:
+$$
+    \bar{S} = \polar{S}{\theta_{PF}} = P+jQ = VI^* \\
+    * \leftarrow \text{Complex Conjugate}
+$$
+
+!!! notation: Units
+    $P$: Real or active power (W, kW, MW)
+
+    $Q$: Imaginary or reactive power (VAr, kVAr, MVAr)
+
+    $\bar{S}$: Complex power (VA, kVA, MVA)
+
+    $S$: Apparent power (VA, kVA, MVA)
+
+
+$P$ represents the power consumed by the load
+
+$Q$ represents the power exchanged between the source and inductor or capacitor
+
+$L, C$ have instantaneous power, but 0 average power
+
+$Q$ is not useable, but increases the rating of the transmission lines, which means thicker cables, more line losses, more voltage drop on line, and lower voltage on load. We do not want reactive power, it is not useable.
+
+!!! example: Complex Example
+    ![Complex Example Circuit](Chapter_2/complexexample.png)
+    
+    **Find complex power and apparent power**
+    
+    1. Use the load voltage and load impedance to calculate the current
+    $$
+        \bar{I} = \frac{\polar{40000}{0}}{\polar{100}{0}} = \polar{400}{0} A
+    $$
+
+    2. Calculate total impedance
+    $$
+        \bar{Z}_{tot} = 105 + j40 \ \Omega = \polar{112.4}{20.8}
+    $$
+    
+    3. Total impedance times current -> source voltage
+    $$
+        \bar{V} = \bar{I} \cdot \bar{Z}_{tot} = \polar{400}{0} \cdot \polar{112.4}{20.8} = \polar{45}{20.8}\ \text{kV}
+    $$
+    
+    4. Source voltage times current -> total power of the source
+    $$
+        \bar{S} = VI^* = \polar{45000}{20.8}\cdot \polar{400}{0} = \polar{17.98}{20.8}\ \text{MVA} = 16.8+j6.4\ \text{MVA}
+    $$
+
+!!! example: Another example
+    A load draws 100kW with a leading PF of 0.85. 
+    
+    **What is the power factor angle, reactive power, complex power, and apparent power?**
+    
+    $P=100\ \text{kW}$
+
+    $\cos{\theta_V-\theta_I} = 0.85$
+
+    A leading PF means that the current is leading the voltage. We use voltage as the reference waveform. $\theta_I$ should be positive. The power factor angle $\theta_PF = \theta_V - \theta_I = -31.8^\circ$
+    
+    $$
+        S = \frac{P}{\cos{\theta_{PF}}} = \frac{100}{0.85} = 117.6\ \text{kVA}
+    $$
+    
+    $$
+        Q = S\sin{\theta_{PF}} = 117.6\sin{-31.8^\circ} = -62\ \text{KVAr}
+    $$
+    
+    $$
+        \bar{S} = P + jQ = 100 - j62 = \polar{117.6}{-31.8} kVA
+    $$
+    
+### Power Consumption in Devices
+
+Resistors only consume real power:
+$$
+    P_R = I_R^2 \ \text{or} \ P_R = \frac{V_R^2}{R}
+$$
+
+Inductors only consume reactive power:
+$$
+    Q_L = I_L^2 X_L \ \text{or} \ Q_L = \frac{V_L^2}{X_L}\\\
+    X_L = \omega L
+$$
+
+Capacitors only produce reactive power:
+$$
+    Q_C = I_C^2 X_C \ \text{or} \ Q_C = \frac{V_L^2}{X_C}\\
+    X_C = -\frac{1}{\omega C}
+$$
+
+    
 
 <!--html&body tags needed to get live-server to work-->
 <html><body></body></html>
