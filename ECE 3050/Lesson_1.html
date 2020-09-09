@@ -12,14 +12,18 @@
 <body>
 **Lesson 1**
 
-
-
 $$
     \def\R{{\mathbb{R}}}
     \def\Z{{\mathbb{Z}}}
     \def\N{{\mathbb{N}}}
+
+    \def\and{{\cap}}
+    \def\inf{{\infty}}
     
     \newcommand{\Zn}[1]{\mathbb{Z}_{\\#1}}
+    \newcommand{\ts}{\textsuperscript}
+    \newcommand{\deg}[1]{#1^\circ}
+    \newcommand{\polar}[2]{#1\angle \deg{#2}}
 $$
 
 # Signals
@@ -82,8 +86,132 @@ x[n] =
 \end{cases}
 $$
 
-
 ![Discrete Real-valued Exponential Signal](Lesson_1/RV_exp_samp.png)
+
+## Signals
+
+### Energy and Power Signals
+$$
+    E = \int^\infty_\infty = |x(t)|^2 dt \\
+    \text{or} \\
+    E = \sum^\infty_{n=-\infty} |x[n]|^2
+$$
+
+Energy signal: $0 \le E \lt \infty$
+
+An energy signal has nonzero values only on a finite interval.
+
+$$
+	\begin{aligned}
+        P = \lim_{T->\infty} \frac{1}{T} \int^{T/2}_{T/2} |x(t)|^2dt\ \leftarrow \ \text{Avg energy per unit time} \\
+        P = \lim_{T->\infty} \frac{1}{2N+1} \sum^N_{n=-N} |x[t]|^2dt\ \leftarrow \ \text{Avg energy per sample}
+    \end{aligned}
+$$
+
+Power signal: $0 \lt P \lt \inf$
+
+A signal is an energy signal if the evaluation for $E$ is finite. If it is infinite, the signal is a power signal.
+
+!!! note: Note
+    Energy Signal has zero power, power signal has infinite energy
+    
+!!! example: Sinusoid Signal
+    Is a sinusoid signal a power signal or energy signal?
+    
+    $$
+        \int^\pi_0 \sin^2{t} dt = \int^\pi_0 \frac{1+\sin{2t}}{2} dt = \int^\pi_0 \frac{1}{2}\ dt + \int^\pi_0 \frac{\sin{2t}}{2} dt = \frac{\pi}{2}
+    $$
+    
+    We take this result and sum it up across the entire domain, finding the following.
+    
+    $$
+        \int^\inf_{-\inf} \sin^2{t} dt = \sum^\inf_{k=-\inf} \int^{(k+1)\pi}_{k\pi} \sin^2{t} dt = \sum^\inf_{k=-\inf} \frac{pi}{2} = \inf
+    $$
+    
+    A sinusoid has infinite energy in it's signal. This is a power signal, but not an energy signal, as there are nonzero values at all points in time (except at $x=k\pi$).
+    
+    
+!!! example: Exponential Signal
+    Is an exponential signal a power signal or energy signal?
+
+    $$
+        x(t) = e^{-2t}
+    $$
+
+    $$
+        E = \int^\inf_{-\inf} e^{-2t} dt = \frac{e^{-2t}}{ -2}\bigg|^\inf_0 = \frac{1}{2}
+    $$
+    
+    An exponential signal has a finite energy value. It is an energy signal
+
+## Operations on the Indpendent Variable
+
+Given an input signal, the following operations change the output signal:
+
+$$
+    x(t) = 
+$$
+
+![Input Signal $x(t)$](Lesson_1/operations.png)
+
+### Time Reversal
+$$
+    x(t) \rightarrow x(-t)
+$$
+
+![Time Reversal $x(-t)$](Lesson_1/timereversal.png)
+
+
+### Time Shift
+$$
+    x(t) \rightarrow x(t-a),\ a\gt 0
+$$
+
+![Time Shift $x(t-a)$](Lesson_1/postimeshift.png)
+
+$$
+    x(t) \rightarrow x(t+a),\ a\gt 0
+$$
+
+![Time Shift $x(t+a)$](Lesson_1/negtimeshift.png)
+
+### Scaling
+
+$$
+    x(t) \rightarrow x(at)
+$$
+
+![Scaling Stretch $x(at),\ 0\lt a\lt 1$](Lesson_1/scalingstretch.png)
+
+![Scaling Compress $x(at),\ a\gt 1$](Lesson_1/scalingcompress.png)
+
+## Basic Signal Operations
+
+### Scaling
+$$
+    y(t) = Ax(t) \\
+    y[n] = Ax[n]
+$$
+
+### Multiplication
+
+This is termwise and uses the symbol $\odot$
+$$
+    y(t) = x_1(t) \odot x_2(t) \\
+    y[n] = x_1[n] \odot x_2[n]
+$$
+
+## System Properties
+
+* Memory
+* Causality
+* Stability
+* Invertibility
+* Linearity
+* Time-invariance
+
+### Memory
+A system is memoryless if its output at any time depends only on the value of input at the same time.
 
 
 </body>
