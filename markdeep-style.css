@@ -5,12 +5,16 @@ body {
     margin-right: auto;
     padding-bottom: 500px;
     margin-top: 60px;
-    font-size: 14px;
+    font-size: 15px;
     font-family: Roboto, 'Bitstream Vera Sans', sans-serif;
     font-weight: 100;
     line-height: 150%;
     color: #9CAFB7;
     /*color: #1B6887;*/
+}
+
+.MathJax {
+    font-size: 19px !important;
 }
 
 .admonition-title {
@@ -85,7 +89,7 @@ h1 {
 }
 
 .md h2 {
-    font-size: 17px;
+    font-size: 20px;
     margin-top: 25px;
     color: #fff;
 }
@@ -99,7 +103,7 @@ h1 {
 }
 
 .md h3 {
-    font-size: 15px;
+    font-size: 17px;
     margin-top: 20px;
     margin-bottom: -3px;
     color: #fff;
