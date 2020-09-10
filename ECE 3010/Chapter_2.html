@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="theme-color" content="#141518" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto|Roboto+Mono" rel="stylesheet">
+<link rel="stylesheet" href="../markdeep-style.css">
+<link rel="shortcut icon" href="../book.svg">
+<body>
+    
+**Chapter 2 - Transmission Lines**
+
+$$
+    \def\R{{\mathbb{R}}}
+    \def\Z{{\mathbb{Z}}}
+    \def\N{{\mathbb{N}}}
+
+    \def\and{{\cap}}
+    \def\inf{{\infty}}
+    \def\defined{{\equiv}}
+    
+    \newcommand{\Zn}[1]{\mathbb{Z}_{\\#1}}
+    \newcommand{\ts}{\textsuperscript}
+    \newcommand{\deg}[1]{#1^\circ}
+    \newcommand{\polar}[2]{#1\angle \deg{#2}}
+    \newcommand{\tld}[1]{\widetilde{#1}}
+$$
+
+# General Considerations
+
+In general we can choose to define a transmission line as anything that carries information between two points through some medium. This is a higher level of abstraction built on top of Maxwell's Equations that allows us to handle the transmission losses and evaluate transmission line circuits using our regular Kirchoff's Laws. This chapter mostly deals with transmission lines that guide electromagnetic signals.
+
+![Transmission Line Abstraction [#1]](Chapter_2/transmissionline.png)
+
+In the above image, we can find that we begin our abstraction by turning the sending end into a *generator circuit*, or a Thevenin-equivalent dc source with a generator voltage $V_g$ in series with a generator resistance $R_g$. We also commonly show these values in their phasor forms, $\tld{V}_g$ and $Z_g$.
+
+The circuit on the other end is called the *load* circuit, which can be anything that uses this electromagnetic signal. This is represented simply by a resistor $R_L$, or impedance $Z_L$
+
+## When do we abstract?
+
+An early question about this setup with transmission lines is why? If we've been able to analyze circuits in our previous circuit classes without having to represent "long" wire (or any transmission medium really), then why do we need to start doing that now?
+
+The reasoning mostly has to do with the wavelength, $\omega$, of the wave traveling on the wire and the length, $l$, of the wire. If we assume that the voltage coming out of the generator is a cosine wave, then try to find the voltage across the input terminals AA', we get the following:
+
+$$
+    V_{AA'} = V_g(t) = V_0\cos{\omega t}
+$$
+
+If we assume that $\omega=2\pi f$ and that the current is moving at the speed of light, $c=3\times10^8\ \text{m/s}$, then we find that the voltage at the terminals BB' will have to be delayed in time relative to the voltage AA' by the time travel delay of $l/c$. [#1]
+
+$$
+	\begin{aligned}
+        V_{BB'} &= V_{AA'}(t-l/c) = V_0\cos{[\omega (t-l/c)]}\\
+        &= V_0\cos{(\omega t - \phi_0)}\\
+    \end{aligned}
+$$
+
+where 
+
+$$
+    \phi_0 = \frac{\omega l}{c}
+$$
+
+This value of $\phi_0$ is where we need to look for when we can safely ignore transmission lines. This value acts as a simple phase shift between the two the two points and entirely depends on the transmission medium, frequency, and wire length.
+
+!!! example: Transmission Lengths
+    For example, assume we have a wire of length 5cm. If we define $V_{AA'}=V_0$ and $V_{BB'}=V_0\cos{(2\pi f l/c)}$ we find that $V_{BB'}=(0.9999\dots)V_0$. For the most part, this is the same value as $V_{AA'}$ and thus we can ignore the transmission lines. 
+
+    Now assume that the line is 20km long, carrying a 1kHz signal. We find the following: $V_{BB'}=0.91V_0$. This is a 9% deviation from the original $V_{AA'}$, which in many applications is much too large to ignore, and thus we cannot ignore transmission lines in our equations.
+
+The above example highlights an important point to note about transmission lines. The main parameter is $\phi_0$, which can be related to the velocity of propagation, $u_p$:
+
+$$
+    \phi_0 = \frac{\omega l}{c} = \frac{2\pi f l}{c} = 2\pi \frac{l}{\lambda}
+$$
+
+!!! theorem:
+    When $l/\lambda$ is very small, transmission line effects may be ignored, but when $l/\lambda\ \approx 0.01$ or greater, it may be necessary to account for the phase shift due to the time delay. Reflected signals may also need to be accounted for. [#1]
+    
+*Dispersive* effects can also occur, which cause variable changes to a signal based on the frequencies the signal is composed of. Examples of this can be a square wave becoming a sine wave or other misc. changes to signals.
+
+## Lumped Element Model
+
+![Transmission Line Circuit Model [#1]](Chapter_2/transmissionlinecircuit.png)
+
+The above image displays the *Lumped Element Model* for transmission lines. This model uses our 3 common passive components to abstract away Maxwell's Equations and allow for us to analyze it using Kirchoff's Laws and Ohm's Law.
+
+!!! notation: Transmission Line Parameters
+    $R'$: The combined resistance of both conductors per unit length, in $\Omega /m$
+
+    $L'$: The combined inductance of both conductors per unit length, in $H/m$
+
+    $G'$: The conductance of the insulation medium between the two conductors per unit length, in $S/m$. This is modeled as a shunt resistor between the two conductors.
+
+    $C'$: The capacitance of the two conductors per unit length, in $F/m$
+    
+    It's worth noting that these 4 parameters are denoted with a ', which means a differential quantity, or a value measured in units of per length. [#1]
+    
+These transmission line parameters are related back to the physical structure of the transmission line, and in this chapter, we deal with 3 different types: [#1]
+
+1. Coaxial lines
+    * Two conductors traveling in parallel, coaxial to each other.
+    * $a$ = outer radius of inner conductor, $m$
+    * $b$ = inner radius of outer conductor, $m$
+2. Two-wire lines
+    * Two conductors traveling in parallel, spaced a distance from each other.
+    * $d$ = diameter of each wire, $m$
+    * $D$ = spacing between each wires' centers, $m$ 
+3. Parallel-plate line
+    * Two parallel and lined up conductors, both plates, with a distance in between the two 
+    * $w$ = width of each plate, $m$
+    * $h$ = thickness of insulation between the plates, $m$
+
+The values that apply to every transmission line parameter equation are the following:
+
+1. $\mu_c$ and $\sigma_c$, which are the magnetic permeability and electrical conductivity of the conductors, respectively.
+2. $\epsilon$, $\mu$, $\sigma$, which are the electrical permitivity, magnetic permability, and electrical conductivity of the insulation material seperating the two conductors.
+
+The following table gives the equations to calculate the transmission line parameters given the physica parameters listed above:
+
+![Transmission Line Parameter Equations [#1]](Chapter_2/transmissionlineparams.png)
+
+## Telegrapher Equations
+
+We now wish to determine a mathematical model that describes the dynamics of a transmission line within a circuit. This means we would like to find the $v$ and $i$ caused by the introduction of a long transmission line into a circuit. We first start by taking a small chunk $\Delta z$ from the model at the beginning of Section [Lumped Element Model] and analyzing it to find the $v(z,t)$ and $i(z,t)$ for this small chunk. We then will integrate this chunk over the entire length of the transmission line to find the total.
+
+![Transmission Line Chunk, $\Delta z$ [#1]](Chapter_2/transmissionlinedelta.png)
+
+$$
+    \def\delz{{\Delta z}}
+$$
+
+We begin by finding the voltage drop across the series resitance $R'\Delta z$ and inductance $L'\Delta z$:
+$$
+    v(z,t) - R'\Delta z i(z,t) - L'\Delta z \frac{\delta i(z,t)}{\delta t} - v(z+\Delta z,t) = 0
+$$
+
+This is then converted into phasor form, to remove the partial derivative
+$$
+    \tld{V}(z+\delz) + \tld{I}(z+\delz) R'\delz + \tld{I}(z+\delz) + \tld{I}j\omega L'\delz
+$$
+
+Rearranging all terms and dividing by $\delz$
+$$
+    - \lim_{\delz\rightarrow 0} \frac{\tld{V}(z+\delz) - \tld{V}(z)}{\delz} = \lim_{\delz \rightarrow 0} R'\tld{I}(z) + j\omega L'\tld{I}(z)
+$$
+
+Evaluating the limit, we find the following differential equation
+$$
+    \begin{equation}
+    \label{TelegrapherVoltage}
+        \frac{d \tld{V}(z)}{dz} = -(R'+j\omega L')\tld{I}(z)
+    \end{equation}
+$$
+
+This equation defines the voltage across a transmission line in at a certain point along its length. This is also in the frequency domain (phasor) so we ignore time.
+
+Moving on to the current $i(z,t)$, we begin by analyzing the current going through the parallel conductance and capacitance.
+$$
+    i(z,t) - G'\delz v(z+\delz,t) - C'\delz \frac{\delta v(z+\delz,t)}{\delta t} - i(z+\delz,t) = 0
+$$
+
+We then convert this to the phasor representation
+$$
+    \tld{I}(z) = \tld{V}(z+\delz)G'\delz + \tld{V}(z+\delz)j\omega C' \delz + \tld{I}(z+\delz)
+$$
+
+Rearranging and dividing by $\delz$
+$$
+    \lim_{\delz\rightarrow 0} \frac{\tld{I}(z+\delz) - \tld{I}(z)}{\delz} = -\lim_{\delz\rightarrow 0} \tld{V}(z+\delz)(G'+j\omega C')
+$$
+
+Finally, evaluating the above statment, we find the following
+$$
+    \begin{equation}
+        \label{TelegrapherCurrent}
+        \frac{d\tld{I}(z)}{dz} = -(G'+j\omega C') \tld{V}(z)
+    \end{equation}
+$$
+
+Equation [TelegrapherVoltage] and equation [TelegrapherCurrent] are commonly presented together and named the **Telegrapher Equations**
+
+
+!!! theorem: Telegrapher Equations (Phasor Form)
+    Current:
+    $$
+        \frac{d\tld{I}(z)}{dz} = -(G'+j\omega C') \tld{V}(z)
+    $$
+    Voltage:
+    $$
+        \frac{d \tld{V}(z)}{dz} = -(R'+j\omega L')\tld{I}(z)
+    $$
+
+    
+### Solutions to the Telegrapher Equations
+
+To solve these equations, we first start by differentiating the voltage equation [TelegrapherVoltage] and plugging it into the current equation [TelegrapherCurrent].
+
+$$
+	\begin{aligned}
+        \frac{d}{dz} \frac{d \tld{V}(z)}{dz} &= \frac{d}{dz} (-(R'+j\omega L)\tld{I}(z)) \\
+        \frac{d^2 \tld{V}(z)}{dz^2} &= -(R'+j\omega L')\frac{d\tld{I}(z)}{dz} \\
+                                    &= -(R'+j\omega L')(G'+j\omega C')\tld{V}(z) \\
+                                    &= -\gamma^2\tld{V}(z)
+    \end{aligned}
+$$
+    
+where $\gamma^2 \equiv (R'+j\omega L')(G'+j\omega C')$.
+
+This equation is then rearranged by setting equal to zero.
+
+$$
+    \frac{d^2 \tld{V}(z)}{dz^2} - -\gamma^2\tld{V}(z) = 0
+$$
+
+The general solution to this equation is the following:
+
+$$
+    \tld{V}(z) = V_0^+ e^{-\gamma z} + V_0^- e^{+\gamma z}
+$$
+
+where $\gamma = +\sqrt{(R'+j\omega L')(G'+j\omega C')}$ and is called the *Complex propgation constant* 
+
+The solution found above is the voltage phasor for the transmission line and is used to define the voltage at a specific position, $z$, on the transmission line. $V_0^+$ and $V_0^-$ are arbitrary complex voltages that are defined by the boundary conditions of the problem.
+
+We can further analyze this voltage phasor to understand what it means, physically. If we arbitrarily define $V_0^-=0$, we find that $\tld{V}(z) = V_0^+ e^{-\gamma z}$. Taking the real part of this $\tld{V}(z)$, we find the following for $v(z,t)$:
+
+$$
+	\begin{aligned}
+        v(z,t) &= Re\{\tld{V}(z) e^{j\omega t}\} \\
+        &= Re\{V_0^+ e^{-\gamma z} e^{j\omega t}\}
+    \end{aligned}
+$$
+
+$V_0^+$ is then written in polar form
+
+$$
+    v(z,t) = Re\{\ |V_0^+|\ e^{j\angle V_0^+} e^{-\gamma z} e^{j\omega t}\ \}
+$$
+
+If we note that $\gamma$ is a complex number, we can rewrite it into a Cartesian form: $\gamma = \alpha + j\beta$.
+
+$$
+    v(z,t) = Re\{\ |V_0^+|\ e^{j\angle V_0^+} e^{-(\alpha + j\beta) z} e^{j\omega t}\ \}
+$$
+
+Now combine all of the imaginary exponentials and write them in the form of $e^{j\theta}$
+
+$$
+    v(z,t) = Re\{\ |V_0^+|\ e^{-\alpha z} e^{j(\angle V_0^+ - \beta z + \omega t)}\ \}
+$$
+
+We know from Euler's formula that $e^{j\theta} = \cos\theta + j\sin\theta$, and thus, $Re\{ e^{j\theta} \} = \cos\theta$. Applying this to the previous findings we get the following.
+
+$$
+    v(z,t) = |V_0^+| e^{-\alpha z} \cos(\omega t - \beta z + \angle V_0^+)
+$$
+
+This equation is a general traveling wave (sinusoidial) with a amplitude of $V_0^+$ and velocity of $v_p=\lambda/T$. Below is an example where $t=0$, $\angle V_0^+=0$, and $\alpha=0$. This waveform has a wavelength of $\lambda$ and is traveling in the +z direction.
+
+<iframe src="https://www.desmos.com/calculator/d6p8vbgxlh?embed" style="height: 400px; border: 1px solid #ccc" frameborder=0></iframe>
+
+The parameters used on this waveform are $\alpha$, the attenuation constant, $\beta$, the propagation or phase constant, and $\gamma$, the complex propagation constant.
+
+We also find that $\lambda = 2\pi/\beta$ and $v_p = \lambda f$ or $\omega/\beta$
+
+If we make $\alpha=0.1$ we find that the waveform becomes an exponentially decaying sinsoidial wave. This highlights how this constant is *attenuating* the wave.
+
+<iframe src="https://www.desmos.com/calculator/tbbsjwjuwo?embed" style="height: 400px; border: 1px solid #ccc" frameborder=0></iframe>
+
+
+We now wish to solve the current phasor, in much the same way as we solved for the voltage phasor. This time much of our work is simplified by our new voltage phasor.
+
+$$
+	\begin{aligned}
+        \tld{I}(z) &= \frac{-1}{R'+j\omega L'}\frac{d\tld{V}(z)}{dz} \\
+                   &= \frac{-1}{R'+j\omega L'}\frac{d}{dz}(V_0^+ e^{-\gamma z} + V_0^- e^{+\gamma z}) \\
+                   &= \frac{-1}{R'+j\omega L'}(-\gamma V_0^+ e^{-\gamma z} + \gamma V_0^- e^{+\gamma z})
+    \end{aligned}
+$$
+
+We then isolate the exponentials and rewrite in terms similar to that of the voltage phasor.
+
+$$
+    \tld{I}(z) = \bigg(\frac{\gamma V_0^+}{R'+j\omega L'}\bigg)e^{-\gamma z} + \bigg(\frac{-\gamma V_0^-}{R'+j\omega L'}\bigg)e^{\gamma z}
+$$
+
+Renaming the large constant blocks in front of both exponentials as $I_0^+$ and $I_0^-$.
+
+$$
+    \tld{I}(z) = I_0^+ e^{-\gamma z} + I_0^- e^{\gamma z}
+$$
+
+This is the current phasor representation, derived from the telegrapher equations.
+
+### Characteristic Impedance
+
+If we set $V_0^+/I_0^+$ and $V_0^-/I_0^-$ we find:
+
+$$
+    \frac{V_0^+}{I_0^+} = \frac{R'+j\omega L'}{\gamma} \\
+    \frac{V_0^-}{I_0^-} = -\frac{R'+j\omega L'}{\gamma} \\
+$$
+
+Plugging in the definition for $\gamma$ into one of these two equations:
+
+$$
+    \frac{R'+j\omega L'}{\gamma} = \frac{R'+j\omega L'}{\sqrt{(R'+j\omega L')(G'+j\omega C')}} = \sqrt{\frac{R'+j\omega L'}{G'+j\omega C'}}
+$$
+
+This is the *characteristic impedance* of the signal
+
+!!! theorem: Characteristic Impedance
+    $$
+        Z_0 \defined \sqrt{\frac{R'+j\omega L'}{G'+j\omega C'}}
+    $$
+    
+    Measured in $[\Omega]$
+    
+    $$
+        Z_0 = \frac{V_0^+}{I_0^+} = -\frac{V_0^-}{I_0^-}
+    $$
+
+## Lossless Transmission Line
+
+The special case of a lossless transmission line is one where $G'=0$ and $R'=0$. This can be thought of as a perfect transmission line, where the insulator between the conductors is ideal (zero leakage) and the conductor material is ideal (zero series resistance).
+
+$$
+	\begin{aligned}
+        \gamma &\defined \sqrt{(R'+j\omega L')(G'j\omega C')} = \alpha + j\beta \\
+        &= \sqrt{j\omega L'j\omega C'} \\
+        &= j\omega\sqrt{L'C'} \\
+        &\bbox[2px, border: 1px solid #b2ffff]{\alpha = 0,\space \beta = \omega\sqrt{L'C'}}
+    \end{aligned}
+$$
+
+We note $\alpha$ and $\beta$ in the above image. These two represent that $\gamma$ has no real part and is only imaginary in the case of a lossless transmission line.
+
+$$
+    Z_0 = \frac{V_0^+}{I_0^+} = -\frac{V_0^-}{I_0^-} = \sqrt{\frac{R'+j\omega L'}{G'+j\omega C'}} = \bbox[2px, border: 1px solid #b2ffff]{\sqrt{\frac{L'}{C'}}}
+$$
+
+Noting the result for the characteristic impedance we find that it is a purely real value and is only comprised of the line inductance and capacitance.
+
+$$
+	\begin{aligned}
+        \tld{V}(z) = V_0^+ e^{-\gamma z} + V_0^- e^{\gamma z} = V_0^+ e^{-j\beta z} + V_0^- e^{j\beta z} \\
+        \tld{I}(z) = I_0^+ e^{-\gamma z} + I_0^- e^{\gamma z} = \frac{V_0^+}{Z_0}e^{-j\beta z} - \frac{V_0^-}{Z_0}e^{j\beta z} 
+    \end{aligned}
+$$
+    
+We now wish to use these lossless transmission line equations to
+
+
+# Sources
+
+[#1]: Ulaby, F. and Ravaioli, U., n.d. Fundamentals Of Applied Electromagnetics. 7th ed. Pearson.
+
+
+<!--html&body tags needed to get live-server to work-->
+</body>
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
+<script src="../markdeep.js" charset="utf-8"></script>
+<script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+</html>
